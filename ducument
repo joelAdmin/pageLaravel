@@ -1,0 +1,1 @@
+Clase Formulario: Esta clase contiene una serie de funciones para la creacion de formulario con el stilo de boostrap, para lo cual se ha creado un alias con el nombre de  (Form) el cual puede ser llamado en la vista blade de la siguiente manera para acceder a sus metodos {{Form::function(parametro1, parametro2)}}.

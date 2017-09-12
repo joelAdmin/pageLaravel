@@ -1,0 +1,1 @@
+{!!$submenu->content_sub!!}
