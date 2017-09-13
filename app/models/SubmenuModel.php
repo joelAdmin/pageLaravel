@@ -21,7 +21,7 @@ class SubmenuModel extends Model
     public function scopeGetSubmenu($query, $id_Men)
     {
 
-    	$query->where('id_men', '=', $id_Men);
+    	$query->where('id_men', '=', $id_Men)->where('deleted_at', "=", null);
     }
 
     public function scopeSearch($query, $request)

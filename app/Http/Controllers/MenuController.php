@@ -7,15 +7,21 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Redirect;
 use App\models\MenuModel;
-
+use App\models\SubmenuModel;
 
 class MenuController extends Controller
 {
    public function destroy($id)
    {
       $menu  = MenuModel::find($id);
-      //$menu->delete();
-      return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
+      $submenu = SubmenuModel::GetSubmenu($menu->id_Men);
+      $menu->delete();
+      if($submenu->count() > 0 ) 
+      {
+      	//dd($submenu);
+      	$submenu->delete();
+      }
+      	return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
     }
 
    public function index()
@@ -27,7 +33,6 @@ class MenuController extends Controller
 
     public function store()
     {
-
     	$position = 0;
     	$menu = MenuModel::getMenu();
     	$request = Request::all();
@@ -36,7 +41,6 @@ class MenuController extends Controller
           'position'       => 'required',
           //'get_menu'       => 'required',
           'active_men'    => 'required',
-         
         ];
         $Validator = Validator::make($request, $rules);
         if($Validator->fails()) 

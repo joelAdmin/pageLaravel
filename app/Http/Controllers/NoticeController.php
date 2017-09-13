@@ -49,13 +49,11 @@ class NoticeController extends Controller
     public function getTableNotice()
     {
       $notices = NoticeModel::getNotices(null)->paginate();
-      //dd($notices);
       if ($notices->total()>0) 
       {
         return View::make('back.table.notice')->with('notices', $notices);
       }else
       {
-        //$notices = NoticeModel::paginate();
         return View::make('back.table.notice')->with('notices', $notices)->with('menssage_warning', trans('message.search'));
       }
     }
