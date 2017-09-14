@@ -68,14 +68,6 @@
 	        ajaxLoad('/getTableMenu', 'cont_table');
 	    });
 
-	    function confirmDeleted(id)
-		{
-			$(document).ready(function () 
-			{	
-				$("#"+id+"").modal("show");
-			});
-		}
-
 		function ajaxDeleted(id, id_deleted, url)
 		{
 			$('.loading').show();
@@ -154,9 +146,19 @@
 			
 		}
 
+		function confirmDeleted(id)
+		{
+			$(document).ready(function () 
+			{	
+				$("#"+id+"").modal("show");
+			});
+		}
+
+
 		function restore(id)
 		{
-           	 var url = '/restoreMenu/'+id;
+           	
+           	var url = '/restoreMenu/'+id;
            	$('.loading').show();
 			$.ajax({ 
 				type: "GET", 

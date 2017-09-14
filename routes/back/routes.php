@@ -16,13 +16,15 @@
 		Route:: get('/getUpdateBanner/{id}', 'BannerController@getUpdate')->middleware('auth');
 		Route:: put('/postUpdateBanner', ['as' => 'banner.update', 'uses' => 'BannerController@postUpdate'])->middleware('auth');
 		Route:: get('/deletedBanner/{id}', 'BannerController@destroy')->middleware('auth');
-		Route::get('/restoreBanner/{id}', ['as' =>  'banner/restore', 'uses' => 'BannerController@restore']);
+		Route:: get('/restoreBanner/{id}', ['as' =>  'banner/restore', 'uses' => 'BannerController@restore']);
 
 		Route:: get('/newSubmenu', 'SubmenuController@index')->middleware('auth');
 		Route:: get('/getSubmenu/{idMen}', 'SubmenuController@getSubmenu')->middleware('auth');
 		Route:: post('/newSubmenu', 'SubmenuController@store')->middleware('auth');
 		Route:: get('/getTableSubmenu', 'SubmenuController@getTable')->middleware('auth');
 		Route:: get('/searchSubmenu', 'SubmenuController@search')->middleware('auth');
+		Route:: get('/deletedSubmenu/{id}', 'SubmenuController@destroy')->middleware('auth');
+		Route:: get('/restoreSubmenu/{id}', ['as' =>  'submenus/restore', 'uses' => 'SubmenuController@restore']);
 		Route:: get('/getUpdateSubmenu/{id}', 'SubmenuController@getUpdate')->middleware('auth');
 		Route:: put('/postUpdateSubmenu', ['as' => 'submenu.update', 'uses' => 'SubmenuController@postUpdate'])->middleware('auth');
 

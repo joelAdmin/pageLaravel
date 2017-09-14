@@ -1,9 +1,3 @@
-function showSubmenuAjax(url)
-{
-	//ajaxLoad(url, 'contenido');
-	alert('scc');
-}
-
 function ajaxLoad(filename, cont_table) 
 { 
 	cont_table = typeof cont_table !== 'undefined' ? cont_table : 'cont_table'; 
@@ -23,4 +17,10 @@ function ajaxLoad(filename, cont_table)
 			alert(xhr.responseText); 
 		} 
 	}); 
+}
+
+function showSubmenuAjax(url)
+{
+	//ajaxLoad(url, 'contenido');
+	alert('scc');
 }

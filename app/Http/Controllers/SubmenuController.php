@@ -12,6 +12,22 @@ use App\models\SubmenuModel;
 
 class SubmenuController extends Controller
 {
+    public function destroy($id)
+    {
+      $submenu  = SubmenuModel::find($id);
+      $submenu->delete();
+      return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
+    }
+
+    public function restore($id)
+    {
+       //Indicamos que la busqueda se haga en los registros eliminados con withTrashed
+       $submenu  = SubmenuModel::withTrashed()->where('id_Sub', '=', $id);
+       //Restauramos el registro
+       $submenu->restore();
+       return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id); 
+    }
+
     public function index()
     {
     	$menus = MenuModel::getMenu();

@@ -14,7 +14,6 @@
           		   <div class="tab-content panel panel-default legend">
 	            		<div role="tabpanel" class="tab-pane fade in active" id="new">
 	              			<div class="panel-body">
-	                  			
 	                  			{!! Html_::menssage('fa-info-circle') !!}
 								{!! Form::open(['url' => '/newSubmenu', 'id' => 'submenu_form', 'class' => 'form-horizontal', 'method' => 'post', 'files' => false]) !!}
 	                  			 	@include('form.newSubmenu')
@@ -26,6 +25,7 @@
 	            		<!-- segundo tab -->
             			<div role="tabpanel" class="tab-pane fade" id="manager">
               				<div class="panel-body">
+              					<div id="menssage_deleted"></div>
 			                   {!! Form_::form('search', 'form-inline nav-bar-form nav-bar-left pull-right', 'GET', '/searchSubmenu', null) !!}
 			                     <div class="form-group">
 			                        {!! Form_::text_('text_search', 'search', trans('placeholder.input_search'), trans('title.input_search'), null, 'text') !!}
@@ -107,6 +107,70 @@
 	        $('.ckeditor').ckeditor();
 	        ajaxLoad('/getTableSubmenu', 'cont_table');
 	    });
+
+	    function confirmDeleted(id)
+		{
+			$(document).ready(function () 
+			{	
+				$("#"+id+"").modal("show");
+			});
+		}
+
+		function ajaxDeleted(id, id_deleted, url)
+		{
+			$('.loading').show();
+			$.ajax({ 
+				type: "GET",  
+				url: url, 
+				contentType: false, 
+				success: function (data) 
+				{ 
+					if(data.success)
+					{	
+						$('#tr_'+data.tr_id).hide(500, 'linear');
+						html = '<div class="alert alert-warning alert-dismissable"><i class="fa fa-check-circle-o">';
+						html += '</i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><a href="#" class="alert-link">';
+						html += '</a> LOS DATOS FUERON ELIMINADOS CORRECTAMENTE,SI DESEA DESHACER EL CAMBIO ';
+						html += '<a href="#" class="btn btn-danger" onclick="restore('+id+');" > <b> DESHACER </b></a>';
+						html += '</div>';
+						$("#menssage_deleted").html(html);
+						$("#menssage_deleted").show(500, 'linear');
+						$("#"+id_deleted+"").modal("hide"); 
+						$('.loading').hide();
+					} 
+				},
+				error: function (xhr, status, error) 
+				{ 
+					alert(xhr.responseText); 
+				} 
+			});
+		}
+
+		function restore(id)
+		{
+           	
+           	var url = '/restoreSubmenu/'+id;
+           	$('.loading').show();
+			$.ajax({ 
+				type: "GET", 
+				url: url, 
+				contentType: false, 
+				success: function (data) 
+				{ 
+					if(data.success)
+					{	
+						$('#tr_'+data.tr_id).show(500, 'linear');
+						$("#menssage_deleted").html('');
+						$("#menssage_deleted").hide(500, 'linear');
+						$('.loading').hide();
+					} 
+				},
+				error: function (xhr, status, error) 
+				{ 
+					alert(xhr.responseText); 
+				} 
+			});
+		}
 
 	    function edit(url)
 		{

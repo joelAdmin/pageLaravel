@@ -17,12 +17,12 @@ class MenuModel extends Model
 
     public static function getMenu()
     {
-    	return  DB::table('menus')->orderBy('position_men', 'asc')->pluck('etiqueta_men', 'id_Men');
+    	return  DB::table('menus')->where('deleted_at', "=", null)->orderBy('position_men', 'asc')->pluck('etiqueta_men', 'id_Men');
     }
 
     public static function menuAll()
     {
-        return  DB::table('menus')->orderBy('position_men', 'asc')->get();
+        return  DB::table('menus')->where('deleted_at', "=", null)->orderBy('position_men', 'asc')->get();
     }
 
     public static function getMenuAll()

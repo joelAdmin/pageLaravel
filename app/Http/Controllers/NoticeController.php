@@ -22,7 +22,7 @@ class NoticeController extends Controller
       return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
     }
 
-    public function restore( $id )
+    public function restore($id)
     {
        //Indicamos que la busqueda se haga en los registros eliminados con withTrashed
        $notice  = NoticeModel::withTrashed()->where('id_Not', '=', $id);

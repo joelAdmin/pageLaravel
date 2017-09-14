@@ -34,10 +34,11 @@
                             <td id="position_sub{{$submenu->id_Sub}}">{{$submenu->position_sub}}</td>
                             <td id="url_sub{{$submenu->id_Sub}}">{!! $submenu->url_sub !!}</td>
                             <td id="event_sub{{$submenu->id_Sub}}">{{$submenu->event_sub}}</td>
-                            <td><center><a href="#"  class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Eliminar</a></center></td>
+                            <td><center><a href="#" onclick="confirmDeleted('deleted{{$submenu->id_Sub}}');" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Eliminar</a></center></td>
                            
                             <td><center><a href="#" id="edit_{{$submenu->id_Sub}}" onclick="edit('/getUpdateSubmenu/{{$submenu->id_Sub}}');" class="btn btn-xs btn-success"><i class="fa fa-pencil"></i> Editar</a></center></td>
                         </tr>
+                        {!! Html::modalDeleted($submenu->id_Sub, 'deleted'.$submenu->id_Sub, '/deletedSubmenu/'.$submenu->id_Sub) !!}
                       @endforeach
                     </tbody>
 </table>
