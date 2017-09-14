@@ -15,13 +15,25 @@ class MenuController extends Controller
    {
       $menu  = MenuModel::find($id);
       $submenu = SubmenuModel::GetSubmenu($menu->id_Men);
-      $menu->delete();
+      //$menu->delete();
       if($submenu->count() > 0 ) 
       {
-      	//dd($submenu);
-      	$submenu->delete();
-      }
+      	return array('confirmDeleted' => true, 'message' => trans('message.success_update'), 'id' => $menu->id_Men);
+      	//$submenu->delete();
+      }else
+      {
+      	$menu->delete();
       	return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
+      }
+    }
+
+    public function destroyProcess($id)
+    {
+    	$menu  = MenuModel::find($id);
+    	$submenu = SubmenuModel::GetSubmenu($id);
+    	$menu->delete();
+      	$submenu->delete();
+      	return array('success' => true, 'message' => trans('message.success_update'));
     }
 
    public function index()

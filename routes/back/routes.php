@@ -33,6 +33,7 @@
 		Route:: post('/newMenu', 'MenuController@store')->middleware('auth');
 		Route:: get('/searchMenu', 'MenuController@search')->middleware('auth');
 		Route:: get('/deletedMenu/{id}', 'MenuController@destroy')->middleware('auth');
+		Route:: get('/deletedProcess/{id}', 'MenuController@destroyProcess')->middleware('auth');
 		Route::get('/restoreMenu/{id}', ['as' =>  'menus/restore', 'uses' => 'MenuController@restore']);
 
 		Route:: get('/newNotice', 'NoticeController@newNotice')->middleware('auth');

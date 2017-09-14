@@ -14,7 +14,6 @@
           		   <div class="tab-content panel panel-default legend">
 	            		<div role="tabpanel" class="tab-pane fade in active" id="new">
 	              			<div class="panel-body">
-	                  			
 	                  			{!! Html_::menssage('fa-info-circle') !!}
 								{!! Form::open(['url' => '/newMenu', 'id' => 'notice_form', 'class' => 'form-horizontal', 'method' => 'post', 'files' => false]) !!}
 	                  			 	@include('form.newMenu')
@@ -93,7 +92,21 @@
 						html += '</i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><a href="#" class="alert-link">';
 						html += '</a> LOS DATOS FUERON ELIMINADOS CORRECTAMENTE,SI DESEA DESHACER EL CAMBIO ';
 						//html += '<a href="/restoreNotice/'+id+'">CLICK AQUI</a>';
-						html += '<a href="#" onclick="restore('+id+');" >CLICK AQUI</a>';
+						html += '<a href="#" class="btn btn-danger" onclick="restore('+id+');" > <b> DESHACER </b></a>';
+						html += '</div>';
+						$("#menssage_deleted").html(html);
+						$("#menssage_deleted").show(500, 'linear');
+						$("#"+id_deleted+"").modal("hide"); 
+						$('.loading').hide();
+					}else if(data.confirmDeleted)
+					{
+						//url = '/deletedProcess/'+data.id;
+						//alert(url);
+						html = '<div class="alert alert-danger alert-dismissable"><i class="fa fa-check-circle-o">';
+						html += '</i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><a href="#" class="alert-link">';
+						html += '</a> ADVERTENCIA SI ELIMINA EL MENU, SE ELIMINARAN TODOS LOS SUB-MENU ASOCIADOS. ';
+						//html += '<a href="/restoreNotice/'+id+'">CLICK AQUI</a>';
+						html += '<a href="#" class="btn btn-danger" onclick="destroyProcess('+id+', '+id_deleted+', '+data.id+');" ><b>BORRAR DE TODAS FORMAS</b></a>';
 						html += '</div>';
 						$("#menssage_deleted").html(html);
 						$("#menssage_deleted").show(500, 'linear');
@@ -106,6 +119,39 @@
 					alert(xhr.responseText); 
 				} 
 			});
+		}
+
+		function destroyProcess(id, id_deleted, id_send)
+		{
+			var url = '/deletedProcess/'+id_send;	
+			//$('.loading').show();
+			$.ajax({ 
+				type: "GET", 
+				url: url, 
+				contentType: false, 
+				success: function (data) 
+				{ 
+					if(data.success)
+					{	
+						$('#tr_'+id).hide(500, 'linear');
+						html = '<div class="alert alert-warning alert-dismissable"><i class="fa fa-check-circle-o">';
+						html += '</i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><a href="#" class="alert-link">';
+						html += '</a> LOS DATOS FUERON ELIMINADOS CORRECTAMENTE,SI DESEA DESHACER EL CAMBIO ';
+						//html += '<a href="/restoreNotice/'+id+'">CLICK AQUI</a>';
+						html += '<a href="#" class="btn btn-danger" onclick="restore('+id+');" > <b> DESHACER </b></a>';
+						html += '</div>';
+						$("#menssage_deleted").html(html);
+						$("#menssage_deleted").show(500, 'linear');
+						$("#"+id_deleted+"").modal("hide"); 
+						//$('.loading').hide();
+					}
+				},
+				error: function (xhr, status, error) 
+				{ 
+					alert(xhr.responseText); 
+				} 
+			});
+			
 		}
 
 		function restore(id)
