@@ -30,7 +30,7 @@
             <section class="group1">
               <div id="content" class="left">
                   <div id="contenido">
-                    <div id="contenido_interno" class="cols three-cols">
+                    <div id="contenido_interno" class="cols three-cols">hola mundo
                         @include('front.ajax.notices')
                     </div>
                   </div>
