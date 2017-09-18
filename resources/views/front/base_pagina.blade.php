@@ -3,34 +3,36 @@
     @include('front.include.head')
   </head>
   <body>
-    <style> 
+   
+     <style> 
       .loading 
       { 
-        background: lightgoldenrodyellow url('{{asset('media/img/load.gif')}}') no-repeat center 65%; 
-        
-        height: 80px; 
-        width: 100px; 
+        background: url('{{asset('media/img/load.gif')}}') no-repeat center 65%; 
+        background-color: rgba(0,0,0,0.8);
         position: fixed;
-        border-radius: 4px; 
-        left: 50%; 
-        top: 50%; 
-        margin: -40px 0 0 -50px; 
-        z-index: 2000; 
-        display: none; 
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        margin:0;
+        z-index: 2000;
+        display: none;
       } 
-    </style>
+    </style> 
+    
     <div id="divBloqueador"></div>
       <!--start container-->
         <div id="container">
           <header>
             @include('front.include.headBoard')
+            
           </header>
           @include('front.include.banner')
           <div class="holder_content">
             <section class="group1">
               <div id="content" class="left">
                   <div id="contenido">
-                    <div id="contenido_interno" class="cols three-cols">hola mundo
+                    <div id="contenido_interno" class="cols three-cols">
                         @include('front.ajax.notices')
                     </div>
                   </div>

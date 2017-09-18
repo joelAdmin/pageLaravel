@@ -1,6 +1,8 @@
 <?php
 
 return [
+   'read_back' => 'Volver a la pagina de inicio.',
+   'read_more' => 'Leer la noticia completa.',
    'input_user' => 'Por favor ingrese un nombre de Usuario.',
    'input_passwd' => 'Por favor ingrese clave de Usuario.',
    'input_author' => 'Por favor ingrese el autor de la fuente.',
@@ -29,6 +31,4 @@ return [
    'check_active' => 'Por favor selecione si desea activar al menú.',
    'textarea_content_menu' => 'Por favor ingresar el contenido del menú que va hacer visualizado mediantes la function o evento definido para el menú utilzando ajax.',
    'textarea_content_submenu' => 'Por favor ingresar el contenido del submenú que va hacer visualizado mediantes la function o evento definido para el submenú utilzando ajax.',
-
-
 ];

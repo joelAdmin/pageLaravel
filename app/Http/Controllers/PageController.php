@@ -19,8 +19,15 @@ class PageController extends Controller
         //$notice = new NoticeModel;
         $notices = NoticeModel::getNotices(null)->paginate();
         //dd($notice->notices()->get());
-
         return View::make('front.frontHome')->with('submenus', $submenus)->with('menus', $menus)->with('banners', $banner)->with('notices', $notices);
+    }
+
+    public function readMore($id)
+    {
+        //$notice = NoticeModel::find($id);
+        $notice = NoticeModel::getNotices($id)->get()[0];
+        //dd($notice->title_not);
+        return view('front.ajax.readMore', ['notice' => $notice]);
     }
 
     public function showSubmenuAjax($id)

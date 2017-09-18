@@ -16,7 +16,7 @@
                 @foreach($submenus as $submenu)
                   @if($submenu->id_men == $menu->id_Men)
                     @if(empty($submenu->url_sub) OR ($submenu->url_sub=='#'))
-                      <li><a id='sub_{{$submenu->id_Sub}}' data-id='{{$submenu->id_Sub}}' href="#" onclick='showSubmenuAjax("/showSubmenuAjax/{{$submenu->id_Sub}}");' class="font_submenu"><i class="fa fa-caret-right fa-fw"></i>{{$submenu->etiqueta_sub}}</a></li>
+                      <li><a id='sub_{{$submenu->id_Sub}}' data-id='{{$submenu->id_Sub}}' href="#" onclick='showAjax("/showSubmenuAjax/{{$submenu->id_Sub}}");' class="font_submenu"><i class="fa fa-caret-right fa-fw"></i>{{$submenu->etiqueta_sub}}</a></li>
                     @else
                       <li><a id='sub_{{$submenu->id_Sub}}' data-id='{{$submenu->id_Sub}}' href='{{$submenu->url_sub}}' class="font_submenu"><i class="fa fa-caret-right fa-fw"></i>{{$submenu->etiqueta_sub}}</a></li>
                     @endif  

@@ -1,4 +1,4 @@
-<br><h4 class="tituloH4"><i class="fa fa-link fa-fw"></i> <b>Enlaces de Interes<hr></b></h4>
+<br><h4 class="tituloH4"><i class="fa fa-link fa-fw"></i> <b>{{trans('label.enlace')}}<hr></b></h4>
 <center>
   <ul class="lista_enlaces">
     <li>

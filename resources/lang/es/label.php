@@ -69,5 +69,12 @@ return [
     'confirm_deleted' =>   '¿ Esta seguro de eliminar el siguiente registro ?',
     'deleted' =>   'Eliminar',
     'close' =>   'Cancelar',
-
+    'read_more' => 'Leer mas',
+    'total_reg' => 'Total de registro',
+    'of' => 'de',
+    'image_not' => 'IMAGEN NO DISPONIBLE',
+    'back' => 'Volver',
+    'notice' => 'Noticia',
+    'notices' => 'Noticias',
+    'enlace' => 'Enlaces de Interes',
 ];

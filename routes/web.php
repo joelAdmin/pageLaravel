@@ -14,8 +14,8 @@ Route::group(['middleware' => ['web']], function ()
 	Route::get('/backHome', 'AuthController@index');
 	Route::get('login', 'AuthController@showLogin');
 	Route::post('login', 'AuthController@postLogin');
-	Route:: get('/showSubmenuAjax/{id}', 'PageController@showSubmenuAjax');
-
+	Route::get('/showSubmenuAjax/{id}', 'PageController@showSubmenuAjax');
+	Route::get('/readMore/{id}', 'PageController@readMore');
 	Route::get('lang/{lang}', function ($lang) 
 	{
     	session(['lang' => $lang]);

@@ -3,6 +3,8 @@
 <link rel="stylesheet" type="text/css" href="plantillas/02/css/styles.css"/>
 <link href="plantillas/lib_css/font-awesome/css/font-awesome.css" rel="stylesheet">
 <link href="plantillas/01/css/bootstrap.css" rel="stylesheet">
+<link href="css/rss.css" rel="stylesheet">
+
 <script src="plantillas/01/js/jquery-1.10.2.js"></script>
 <!-- **************************** carosuel ***********************************-->
 <script type="text/javascript" src="plantillas/02/js/carosuelBanner.js"></script>
