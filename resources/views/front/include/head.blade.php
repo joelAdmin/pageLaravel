@@ -16,5 +16,5 @@
 <script language="javascript" type="text/javascript" src="{{ asset('/libs/lof_jquery/js/jquery.easing.js') }}"></script>
 <script language="javascript" type="text/javascript" src="{{ asset('/libs/lof_jquery/js/script.js') }}"></script>
 <!-- **************************** FIN LOF JQUERY ***********************************-->
-<script src="plantillas/01/js/bootstrap.min.js"></script>
-<script src="{{ asset('/js/app_front_ajax.js') }}"></script>
+<script language="javascript" type="text/javascript" src="plantillas/01/js/bootstrap.min.js"></script>
+<script language="javascript" type="text/javascript" src="{{ asset('/js/app_front_ajax.js') }}"></script>

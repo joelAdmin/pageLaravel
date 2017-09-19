@@ -77,4 +77,8 @@ return [
     'notice' => 'Noticia',
     'notices' => 'Noticias',
     'enlace' => 'Enlaces de Interes',
+    'name' => 'Nombre',
+    'email' => 'Correo',
+    'description' => 'Descripción',
+    'info_newContact' => 'Información del mensaje',
 ];

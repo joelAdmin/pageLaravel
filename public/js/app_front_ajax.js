@@ -22,3 +22,10 @@ function ajaxLoad(filename, cont_table)
 		} 
 	}); 
 }
+
+function ajaxLoadModal(url, div_cont, div_modal)
+{
+	//alert(div_cont);
+	ajaxLoad(url, div_cont);
+	$('#'+div_modal+'').modal("show");
+}

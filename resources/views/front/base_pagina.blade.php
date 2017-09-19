@@ -77,26 +77,15 @@
                 </div>
               </div>
 
-              <div style="display:None;" id="galeriaImagen" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
+              <div style="display:None;" id="showModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div id="contModal" class="modal-content">
                   
-                    <div class="panel-body">
-                      <fieldset class="scheduler-border"><legend class="scheduler-border"><i class="fa fa-picture-o"></i> Galeria de Imagenes <button type="button" class="close" data-dismiss="modal">x</button></legend>
-                        <div class="panel-body">
-                          <div id="resul_galeria_imagen"></div>
-                       
-                          <div id="contenedor_modal_galeria">
-                            <!--start galeria de imagenes-->
-        
-                            <!--end galeria de imagenes -->
-                          </div> 
-                        </div>
-                      </fieldset>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
+
             </section>
           </div>
           <!--start enlaces-->

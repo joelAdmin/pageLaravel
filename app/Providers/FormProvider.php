@@ -37,6 +37,30 @@ class FormProvider extends ServiceProvider
             return $comp;
         });
 
+        Form::macro('textArea_', function ($id, $name, $label, $placeholder, $help, $require, $errors, $size=array())
+        {
+            if($errors->first($name)) 
+            {
+                $comp = '<div id="div_'.$id.'" class="form-group has-error has-feedback alert alert-danger">';
+            }else 
+            {
+                $comp = '<div id="div_'.$id.'" class="form-group">';
+            }
+                //$comp .= Form::label($name, $label, ['for' => "email", 'class' => 'col-md-'.$size[0].' control-label']);
+                $comp .= '<label for="email" class="col-md-'.$size[0].' control-label">'.$label.'';if($require == 1) {$comp .=  '<b style="color:red;"> *</b>';}$comp .= '</label>';
+                $comp .= '<div class="col-md-'.$size[1].'">';
+                $comp .= Form::textArea($name, old($name), ['id' => $id, 'placeholder' => ''.$placeholder.'', 'title' => ''.$help.'', 'class' => 'form-control']);
+            
+            /*$comp .= '<span id="span_'.$id.'" class="help-block">';
+            if($errors->first($name)){ $errors->first($name); }
+
+            $comp .= '</span>';*/
+             $comp .= '<span id="span_'.$id.'" class="help-block">'.$errors->first($name).'</span>';
+            
+            $comp .= '</div></div>';
+            return $comp;
+        });
+
         Form::macro('text_', function ($id, $name, $label, $placeholder, $help, $require, $errors, $size=array())
         {
             if($errors->first($name)) 

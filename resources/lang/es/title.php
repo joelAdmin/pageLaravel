@@ -1,6 +1,8 @@
 <?php
 
 return [
+   'input_email' => 'Por favor ingrese su correo electronico.',
+   'input_name' => 'Por favor ingrese su Nommbre completo.',
    'read_back' => 'Volver a la pagina de inicio.',
    'read_more' => 'Leer la noticia completa.',
    'input_user' => 'Por favor ingrese un nombre de Usuario.',
