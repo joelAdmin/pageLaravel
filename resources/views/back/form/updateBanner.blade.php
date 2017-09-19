@@ -36,7 +36,7 @@
         		processData:false,
 				success: function(data)
 				{
-				    alert(+'SE ENVIARON LOS DATOS:'+data);
+				    //alert(+'SE ENVIARON LOS DATOS:'+data);
 				    var html = '';
 				   	var data = eval('(' + data + ')');
 				    

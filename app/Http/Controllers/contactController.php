@@ -17,21 +17,19 @@ class ContactController extends Controller
     public function store()
     {
     	$request = Request::all();
-    	/*
     	$rules = [
-    		'name_con' = 'require',
-    		'email_con' = 'require',
-    		'description_con' = 'require',
+    		'name_con'        => 'required',
+    		'email_con'       => 'required',
+    		'description_con' => 'required',
     	];
-
-    	$validator = Validator::make($request, $rules);*/
-    	/*
-    	if ($validator->fails()) 
+    	$validator = Validator::make($request, $rules);
+    	
+    	if($validator->fails()) 
     	{
     		return array('fail' => true, 'errors' => $validator->getMessageBag()->toArray());
     	}else
     	{
 
-    	}*/
+    	}
     }
 }
