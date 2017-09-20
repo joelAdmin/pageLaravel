@@ -144,9 +144,8 @@ class BannerController extends Controller
     		{
     			\Storage::disk('imgBanner')->put($filename,  \File::get($file));
     			return Redirect::to('/newBanner')->with('menssage_success', trans('message.success_save'));  
-    		}else{
-    			dd($id_Ban);
     		}
+            /*else{dd($id_Ban);}*/
     	}
     }
 }

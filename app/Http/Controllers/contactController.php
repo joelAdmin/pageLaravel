@@ -20,7 +20,7 @@ class ContactController extends Controller
     	$rules = [
     		'name_con'        => 'required',
     		'email_con'       => 'required',
-    		'description_con' => 'required',
+    		'description' => 'required',
     	];
     	$validator = Validator::make($request, $rules);
     	
@@ -29,7 +29,10 @@ class ContactController extends Controller
     		return array('fail' => true, 'errors' => $validator->getMessageBag()->toArray());
     	}else
     	{
-
+    		$id_Con = ContactModel::create($request)->id_Con;
+    		if ($id_Con) {
+    			return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id_Con);	
+    		}
     	}
     }
 }
