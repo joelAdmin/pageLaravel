@@ -34,16 +34,18 @@ class BannerController extends Controller
 
     public function postUpdate() 
     {
-    	if(Request::ajax())
-      	{
+        //if(Request::ajax()){
       		$request = Request::all();
         	$id = $request['id_Ban'];
-        	$bandera = false;
+            $file = Request::file('url_ban');
+            $banner = BannerModel::find($id);
+            $filename = $banner->url_ban;
 
         	$rules = [
 	    	'title_ban' => 'required',
 	    	'status_ban'  => 'required',
-	    	'url_ban' => 'image|max:2560',
+            'url_ban'   => 'max:2560',
+	    	//'url_ban' => 'image|max:2560',
 	    	//'url_ban'   => 'max:2560',1024*1024*1
 	    	//'url_ban'   => 'required',
 	    	//'url_ban'   => 'image|mimes:image/jpeg, image|mimes:image/png',
@@ -53,31 +55,32 @@ class BannerController extends Controller
     		'url_ban.max' => 'El Archivo imagen es muy grande.',
     		'url_ban.image' => 'El Archivo no es tipo imagen.',
     		];
+            
     		$validator = Validator::make($request, $rules, $messages);
     		if($validator->fails()) 
 	        {
 	        	return array('fail' => true, 'errors' => $validator->getMessageBag()->toArray()); 
 	        }else
 	        {
-	        	$banner = BannerModel::find($id);
-	        	$filename = $banner->url_ban;
-            	$file = Request::file('url_ban');
-	        	//Si la data es valida se la asignamos al usuario
-            	$banner->fill($request);
-
+                $banner->fill($request);
             	if($banner->save()) 
             	{
             		if(!empty($file)) 
-		             {
+		            {
+                        //dd($file);
 		                \Storage::disk('imgBanner')->put($filename,  \File::get($file));
 		                return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
 		            }else
 		            {
-		                return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
+		                return array('success' => true, 'message' => trans('message.danger_update'), 'tr_id' => $id);
 		            }
             	}
+                /*else
+                {
+                    return array('danger' => true, 'message' => trans('message.danger_update'), 'tr_id' => $id);
+                }*/
 	        }
-      	}
+      	//}
     }
 
     public function getUpdate($id) 

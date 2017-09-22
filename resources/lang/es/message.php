@@ -9,5 +9,6 @@ return [
     'search' => 'No se encontro ningun registro.',
     'confirm_delete' => 'Esta seguro que desea eliminar el siguiente registro?',
     'success_update' => 'Los datos fueron actualizados correctamente.',
+    'danger_update' => 'Error, los datos no fueron actualizados .',
     
 ];

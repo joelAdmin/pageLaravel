@@ -43,7 +43,7 @@
 			document.getElementById('U_inlet_not').value = CKEDITOR.instances.U_inlet_not.getData();
 			document.getElementById('U_content_not').value = CKEDITOR.instances.U_content_not.getData();
 			var formData = new FormData($('#form_edit_notice')[0]);
-			//alert('AQUI:'+formData);
+			$('.loading').show();
 			$.ajax({
 				type: "POST",
 				url:'/postUpdate',
@@ -76,7 +76,7 @@
 								}
 							});
 				    }else
-				    {alert(data.tr_id);
+				    {
 				    	$('#form_edit_notice').find(':input').each(function ()	
 						{
 				    		var index_name = $(this).attr('name');
@@ -89,7 +89,7 @@
 				    	$('#inlet_not'+data.tr_id).html($('#U_inlet_not').val());
 				    	$("#message").html(html);
 				    }
-				   
+				    $('.loading').hide();
 				}
 			});
 			return false;

@@ -1,5 +1,5 @@
 @if(isset($banner))
-	{!! Form::model($banner, ["id"=>"form_update_banner", "class"=>"form-horizontal", 'method' => 'PUT', 'route' => ['banner.update', $banner->id_Ban]]) !!}
+	{!! Form::model($banner, ["id"=>"form_update_banner", "class"=>"form-horizontal", 'method' => 'PUT', 'route' => ['banner.update', $banner->id_Ban], 'files' => 'true']) !!}
 		{!! Form::hidden('id_Ban', $banner->id_Ban) !!}
 		
 		{!! Html_::fieldset('fieldset0', 'col-md-auto col-md-offset-0', array("fa-newspaper-o", trans('label.info_newBanner'))) !!}
@@ -22,9 +22,10 @@
 
 <script type="text/javascript">
 		$("#btn_update_banner").click(function()
-		{	alert('SE ENVIARON LOS DATOS:');
+		{	
 			document.getElementById('U_content_ban').value = CKEDITOR.instances.U_content_ban.getData();
 			var formData = new FormData($('#form_update_banner')[0]);
+			$('.loading').show();
 			$.ajax({
 				type: "POST",
 				url:'/postUpdateBanner',
@@ -36,42 +37,44 @@
         		processData:false,
 				success: function(data)
 				{
-				    //alert(+'SE ENVIARON LOS DATOS:'+data);
+				    alert(data);
 				    var html = '';
 				   	var data = eval('(' + data + ')');
-				    
 				    if(data.fail)
 					{
 				    	$('#form_update_banner').find(':input').each(function ()	
+						{ 
+							//var index_id = $(this).attr('id');
+							//alert($(this).attr('name'));
+							var index_name = $(this).attr('name');
+							if(index_name in data.errors) 
 							{ 
-								//var index_id = $(this).attr('id');
-								//alert($(this).attr('name'));
-								var index_name = $(this).attr('name');
-								if(index_name in data.errors) 
-								{ 
-									$("#div_U_" + index_name + "").addClass("has-error has-feedback alert alert-danger");  
-									$("#span_U_" + index_name + "").html(data.errors[index_name]); 
-								}else
-								{ 
-									$("#div_U_" + index_name + "").removeClass("has-error has-feedback alert alert-danger"); 
-									$("#span_U_" + index_name + "").empty(); 
-								}
-							});
-				    }else
+								$("#div_U_" + index_name + "").addClass("has-error has-feedback alert alert-danger");  
+								$("#span_U_" + index_name + "").html(data.errors[index_name]); 
+							}else
+							{ 
+								$("#div_U_" + index_name + "").removeClass("has-error has-feedback alert alert-danger"); 
+								$("#span_U_" + index_name + "").empty(); 
+							}
+						});
+				    }else 
 				    {
-				    	$('#form_update_banner').find(':input').each(function ()	
-						{
-				    		var index_name = $(this).attr('name');
-				    		$("#div_U_" + index_name + "").removeClass("has-error has-feedback alert alert-danger"); 
-							$("#span_U_" + index_name + "").empty();
-				    	});
-				    	html += '<div class="alert alert-success alert-dismissable"><i class="fa fa-check-circle-o"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><a href="#" class="alert-link"></a>  '+data.message+'</div>';
-				    	
-				    	//$('#author_not'+data.tr_id).html($('#U_author_not').val());
-				    	$('#title_ban'+data.tr_id).html($('#U_title_ban').val());
-				    	$('#content_ban'+data.tr_id).html($('#U_content_ban').val());
-				    	$("#message").html(html);
+				    	if(data.success) 
+				    	{
+				    		$('#form_update_banner').find(':input').each(function ()	
+							{
+				    			var index_name = $(this).attr('name');
+				    			$("#div_U_" + index_name + "").removeClass("has-error has-feedback alert alert-danger"); 
+								$("#span_U_" + index_name + "").empty();
+				    		});
+				    		html += '<div class="alert alert-success alert-dismissable"><i class="fa fa-check-circle-o"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><a href="#" class="alert-link"></a>  '+data.message+'</div>';
+				    		//$('#author_not'+data.tr_id).html($('#U_author_not').val());
+				    		$('#title_ban'+data.tr_id).html($('#U_title_ban').val());
+				    		$('#content_ban'+data.tr_id).html($('#U_content_ban').val());
+				    		$("#message").html(html);
+				    	}	
 				    }
+				    $('.loading').hide();
 				}
 			});
 			return false;

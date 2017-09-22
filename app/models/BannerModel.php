@@ -13,6 +13,7 @@ class BannerModel extends Model
     protected $primaryKey = 'id_Ban';
     protected $guarded = ['id_Ban'];
     protected $dates = ['deleted_at'];
+    protected $fillable = array('title_ban', 'content_ban', 'url_ban', 'status_ban');
 
     public function scopeSearch($query, $request)
     {

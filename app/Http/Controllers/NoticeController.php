@@ -71,7 +71,6 @@ class NoticeController extends Controller
       
       if(Request::ajax())
       {
-    
         $inputs = Request::all();
         $id = $inputs['id_Not'];
         $file = Request::file('url_image');
@@ -97,12 +96,9 @@ class NoticeController extends Controller
             return array('fail' => true, 'errors' => $validator->getMessageBag()->toArray()); 
           }else
           {
-             //Si la data es valida se la asignamos al usuario
             $notice->fill($inputs);
-            
             if($notice->save()) 
             {
-              
               if (!empty($file)) 
               {
                 \Storage::disk('imgNotice')->put($filename,  \File::get($file));

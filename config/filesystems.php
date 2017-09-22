@@ -50,7 +50,7 @@ return [
             'visibility' => 'public',
         ],
 
-    'imgBanner' => [
+        'imgBanner' => [
             'driver' => 'local',
             'root' => public_path().'/storage/banner/images',
             'visibility' => 'public',
