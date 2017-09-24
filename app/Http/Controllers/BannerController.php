@@ -42,18 +42,18 @@ class BannerController extends Controller
             $filename = $banner->url_ban;
 
         	$rules = [
-	    	'title_ban' => 'required',
-	    	'status_ban'  => 'required',
-            'url_ban'   => 'max:2560',
-	    	//'url_ban' => 'image|max:2560',
-	    	//'url_ban'   => 'max:2560',1024*1024*1
-	    	//'url_ban'   => 'required',
-	    	//'url_ban'   => 'image|mimes:image/jpeg, image|mimes:image/png',
+	    	  'title_ban' => 'required',
+	    	  'status_ban'  => 'required',
+                'url_ban'   => 'max:2560',
+	    	  //'url_ban' => 'image|max:2560',
+	    	  //'url_ban'   => 'max:2560',1024*1024*1
+	    	  //'url_ban'   => 'required',
+	    	  //'url_ban'   => 'image|mimes:image/jpeg, image|mimes:image/png',
 	    	];
 
 	    	$messages = [
-    		'url_ban.max' => 'El Archivo imagen es muy grande.',
-    		'url_ban.image' => 'El Archivo no es tipo imagen.',
+    		  'url_ban.max' => 'El Archivo imagen es muy grande.',
+    		  'url_ban.image' => 'El Archivo no es tipo imagen.',
     		];
             
     		$validator = Validator::make($request, $rules, $messages);
@@ -62,7 +62,10 @@ class BannerController extends Controller
 	        	return array('fail' => true, 'errors' => $validator->getMessageBag()->toArray()); 
 	        }else
 	        {
-                $banner->fill($request);
+                //$banner->fill($request);
+                $banner->title_ban = $request['title_ban'];
+                $banner->content_ban = $request['content_ban'];
+                
             	if($banner->save()) 
             	{
             		if(!empty($file)) 

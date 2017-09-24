@@ -13,5 +13,5 @@
 	@endif
 @endforeach
 
-{!! Html::banner_01('jslidernews1', 960, 340, $arreglo, 'easeInOutExpo', 1) !!}
+{!! Html::banner_04('jslidernews1', 960, 340, $arreglo, 'easeInOutExpo', 1) !!}
                

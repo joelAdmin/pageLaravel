@@ -90,7 +90,6 @@ class NoticeController extends Controller
             'estatus_not'  => 'required',
           ];
           $validator = Validator::make($inputs, $rules);
-          
           if($validator->fails()) 
           { 
             return array('fail' => true, 'errors' => $validator->getMessageBag()->toArray()); 
