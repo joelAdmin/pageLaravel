@@ -1,12 +1,15 @@
 <?php
 
 return [
+   'select_type_user' => 'Por favor seleccione un tipo de usuario que desea crear.',
+   'input_user' => 'Por favor ingrese el nombre de usuario que desea crear.',
    'input_email' => 'Por favor ingrese su correo electronico.',
    'input_name' => 'Por favor ingrese su Nommbre completo.',
    'read_back' => 'Volver a la pagina de inicio.',
    'read_more' => 'Leer la noticia completa.',
    'input_user' => 'Por favor ingrese un nombre de Usuario.',
    'input_passwd' => 'Por favor ingrese clave de Usuario.',
+   'rep_input_passwd' => 'Por favor repita la clave de Usuario que ingreso anteriormente.',
    'input_author' => 'Por favor ingrese el autor de la fuente.',
    'input_soucer' => 'Por favor ingrese el nombre de donde proviene la fuente de la notice.',
    'input_url_soucer' => 'Por favor ingrese el url de donde proviene la fuente de la notice.',

@@ -55,3 +55,5 @@ Route::group(['middleware' => ['web']], function ()
  	})->where(['lang' => 'en|es']);
 });
 */
+//Auth::routes();
+//Route::get('/home', 'HomeController@index');

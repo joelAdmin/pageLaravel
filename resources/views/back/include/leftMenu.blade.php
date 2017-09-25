@@ -6,7 +6,7 @@
               <li>
               	<a id="" href="#" onclick="" ><i class="fa fa-desktop fa-fw"></i> <span class="fa arrow"></span> {{trans('label.system')}}</a>
               	<ul class="nav nav-second-level">
-              		<li><a id="" href="#"  onclick=""><i class="fa fa-user fa-fw"></i>{{trans('label.new_user')}}</a></li>	
+              		<li><a id="" href="/newUser"  onclick=""><i class="fa fa-user fa-fw"></i>{{trans('label.new_user')}}</a></li>	
               	</ul>
 
                 <ul class="nav nav-second-level">

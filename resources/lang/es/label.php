@@ -2,6 +2,11 @@
 
 return [
 
+    'info_count' => 'Datos de la cuenta',
+    'rep_passwd' => 'Repetir Clave',
+    'last_name' => 'Apellido y Nombre',
+    'info_newUser' => 'Datos de Usuario',
+    'manager_user' => 'Gestor de Usuario',
     'user' => 'Usuario',
     'passwd' => 'Clave',
     'spanish'=>'Español',

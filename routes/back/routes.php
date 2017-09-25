@@ -9,6 +9,9 @@
 	//Route:: match(['get','post'], '/newNotice', 'NoticeController@notice')->middleware('auth');
 	Route::group(array('before'=>'auth'), function()
 	{
+		Route:: get('/newUser', 'UserController@index')->middleware('auth');
+		Route:: post('/newUser', 'UserController@store')->middleware('auth');
+
 		Route:: get('/newBanner', 'BannerController@index')->middleware('auth');
 		Route:: post('/newBanner', 'BannerController@store')->middleware('auth');
 		Route:: get('/getTableBanner', 'BannerController@getTableBanner')->middleware('auth');

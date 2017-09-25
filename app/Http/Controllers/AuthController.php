@@ -34,23 +34,26 @@ class AuthController extends Controller
 	public function postLogin()
 	{
 		// we get the data the form (obtenemos los datos del formulario)
+		
 		$data = [
-			 'name' => Input::get('user'),
-		 'password' => Input::get('passwd')
+			 'email'     => Input::get('user'),
+			 //'name'     => Input::get('user'),
+		     'password' => Input::get('passwd')
 		];
 
 		$inputs = Request::all();
 		$rules = [
-            'user' => 'required|min:4|max:20|regex:/^[0-9a-z]+$/i',
-          'passwd' => 'required',
+            //'user'   => 'required|min:4|max:20|regex:/^[0-9a-z]+$/i',
+            'user'   => 'required',
+            'passwd' => 'required',
         ];
         //regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'
         $messages = [
-        	'user.required' => VALID_REQUIRED,
-            	 'user.min' => VALID_USER_MIN,
-            	 'user.max' => VALID_USER_MAX,
-               'user.regex' => VALID_REGEX,
-          'passwd.required' => VALID_REQUIRED,
+        	 'user.required'   => VALID_REQUIRED,
+             'user.min'        => VALID_USER_MIN,
+             'user.max'        => VALID_USER_MAX,
+             'user.regex'      => VALID_REGEX,
+             'passwd.required' => VALID_REQUIRED,
         ];
 
         $Validator = Validator::make($inputs, $rules, $messages);
