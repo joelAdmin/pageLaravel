@@ -11,6 +11,7 @@
 	{
 		Route:: get('/newUser', 'UserController@index')->middleware('auth');
 		Route:: post('/newUser', 'UserController@store')->middleware('auth');
+		Route:: get('/getTableUser', 'UserController@getTableUser')->middleware('auth');
 
 		Route:: get('/newBanner', 'BannerController@index')->middleware('auth');
 		Route:: post('/newBanner', 'BannerController@store')->middleware('auth');

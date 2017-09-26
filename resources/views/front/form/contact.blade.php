@@ -4,6 +4,7 @@
     <div id="message"></div>
       <div id="resul_modal_contact"></div>
       <div id="cont_modal_contact">
+      <!-- ajaxLoadModal('/newContact', 'contModal', 'showModal'); -->
       {!! Form::open(['url' => '#', 'id' => 'contact_form', 'class' => 'form-horizontal', 'method' => 'post', 'files' => false]) !!}
                                   
         {!! Html_::fieldset('fieldset0', 'col-md-auto col-md-offset-0', array("fa-newspaper-o", trans('label.info_newContact'))) !!}

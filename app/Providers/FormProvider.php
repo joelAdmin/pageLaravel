@@ -98,7 +98,7 @@ class FormProvider extends ServiceProvider
                 $comp .= '<label for="email" class="col-md-'.$size[0].' control-label">'.$label.'';if($require == 1) {$comp .=  '<b style="color:red;"> *</b>';}$comp .= '</label>';
                 $comp .= '<div class="col-md-'.$size[1].'">';
                 //$comp .= Form::text($name, old($name), ['id' =>'id_'.$name, 'placeholder' => ''.$placeholder.'', 'title' => ''.$help.'', 'class' => 'form-control']);
-                $comp .=  Form::password($name, ['id' => $id, 'placeholder' => ''.$placeholder.'', 'title' => ''.$help.'', 'class' => 'form-control']);
+                $comp .=  Form::password($name, ['id' => $id,  'placeholder' => ''.$placeholder.'', 'title' => ''.$help.'', 'class' => 'form-control']);
             /*if($errors->first($name))
             {
             $comp .= '<span id="span_'.$id.'" class="help-block">'.$errors->first($name).'</span>';

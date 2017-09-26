@@ -12,8 +12,12 @@
 		public function run(){
 			User::create(array(
 				'name' => 'admin',
+				'user' => 'admin',
 				'email'    => 'admin@admin.com',
-				'password' => Hash::make('admin')	
+				'password' => Hash::make('admin'),
+				'type' => 'admin',	
+				'active' => false,	
+				'estatus' => true,	
 			));
 		}
 	}

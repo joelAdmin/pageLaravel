@@ -16,7 +16,7 @@
 	                  			{!! Html_::menssage('fa-info-circle') !!}
 								{!! Form::open(['url' => '/newUser', 'id' => 'user_form', 'class' => 'form-horizontal', 'method' => 'post', 'files' => false]) !!}
 	                  			 	@include('back.form.newUser')
-	                  			 	{!! Form::submit(trans('button.submit'), ['id' => 'submitFormBanner', 'title' => 'enviar formulario', 'class' => 'btn col-md-2 btn-info']) !!} 
+	                  			 	{!! Form::submit(trans('button.submit'), ['id' => 'submitFormUser', 'title' => 'enviar formulario', 'class' => 'btn col-md-2 btn-info']) !!} 
 	                  			{!! Form::close() !!}
 	 						</div>
 	            		</div>
@@ -56,5 +56,10 @@
 @endsection
 
 @section('script')
-	
+	<script type="text/javascript">
+		$(document).ready(function () 
+	    {
+	        ajaxLoad('/getTableUser', 'cont_table');
+	    });
+	</script>
 @endsection
