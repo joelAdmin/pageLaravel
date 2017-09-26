@@ -37,7 +37,7 @@
         		processData:false,
 				success: function(data)
 				{
-				    alert(data);
+				   
 				    var html = '';
 				   	var data = eval('(' + data + ')');
 				    if(data.fail)
@@ -79,5 +79,4 @@
 			});
 			return false;
 		});
-
 </script>

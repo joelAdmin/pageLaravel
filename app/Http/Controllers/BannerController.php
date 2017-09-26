@@ -34,7 +34,7 @@ class BannerController extends Controller
 
     public function postUpdate() 
     {
-        //if(Request::ajax()){
+        if(Request::ajax()){
       		$request = Request::all();
         	$id = $request['id_Ban'];
             $file = Request::file('url_ban');
@@ -83,7 +83,7 @@ class BannerController extends Controller
                     return array('danger' => true, 'message' => trans('message.danger_update'), 'tr_id' => $id);
                 }*/
 	        }
-      	//}
+      	}
     }
 
     public function getUpdate($id) 

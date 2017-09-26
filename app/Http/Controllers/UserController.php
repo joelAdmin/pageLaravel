@@ -57,4 +57,50 @@ class UserController extends Controller
             return View::make('back.table.user')->with('user', $user);
         }
     }
+
+    public function getUpdate($id)
+    {
+    	$user = User::find($id);
+    	return view('back.form.updateUser', ['user' => $user]);
+    }
+
+    public function postUpdateUser()
+    {
+    	if(Request::ajax()){
+      		$request = Request::all();
+        	//$id = $request['id'];
+            //$user = User::find($id);
+
+        	$rules = [
+    		'email'        => 'required|email|unique:users',
+    		'user'         => 'required|unique:users',
+    		'type'         => 'required|in:user,admin',
+    		];
+
+    		$validator = Validator::make($request, $rules);
+    		if($validator->fails()) 
+	        {
+	        	return array('fail' => true, 'errors' => $validator->getMessageBag()->toArray()); 
+	        }else
+	        {
+                //$banner->fill($request);
+                /*
+                $banner->title_ban = $request['title_ban'];
+                $banner->content_ban = $request['content_ban'];
+                
+            	if($banner->save()) 
+            	{
+            		if(!empty($file)) 
+		            {
+                        //dd($file);
+		                \Storage::disk('imgBanner')->put($filename,  \File::get($file));
+		                return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
+		            }else
+		            {
+		                return array('success' => true, 'message' => trans('message.danger_update'), 'tr_id' => $id);
+		            }
+            	}*/
+	        }
+    	}
+    }
 }

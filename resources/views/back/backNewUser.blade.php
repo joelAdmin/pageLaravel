@@ -61,5 +61,15 @@
 	    {
 	        ajaxLoad('/getTableUser', 'cont_table');
 	    });
+
+	    function edit(url)
+		{
+			$(document).ready(function () 
+			{	
+				$("#message").html('');
+				ajaxLoad(url, 'cont_modal_fieldset');
+				$("#modal_edit").modal("show");
+			});
+		}
 	</script>
 @endsection
