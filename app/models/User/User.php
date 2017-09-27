@@ -13,7 +13,7 @@ class User extends Model
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
-    protected $fillable = ['name', 'user', 'email', 'password', 'type', 'active', 'estatus'];
-    protected $hidden = ['password', 'remember_token'];
+    protected $fillable = ['name', 'user', 'email', 'type'];
+    protected $hidden = ['remember_token'];
 
 }

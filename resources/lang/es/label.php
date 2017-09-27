@@ -86,4 +86,5 @@ return [
     'email' => 'Correo',
     'description' => 'Descripción',
     'info_newContact' => 'Información del mensaje',
+    'update' => 'Actualizar',
 ];

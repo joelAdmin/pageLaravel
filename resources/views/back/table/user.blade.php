@@ -30,11 +30,11 @@
                        <tr id="tr_{{$user->id}}" data-id="{{$user->id}}">
                             <td id="cont"><center><b>{{$i++}}</b></center></td>
                             
-                            <td id="user{{$user->user}}" >{{$user->user}}</td>
-                            <td id="email{{$user->email}}">{{$user->email}}</td>
-                            <td id="type{{$user->type}}">{{$user->type}}</td>
-                            <td id="active{{$user->active}}">{{$user->active}}</td>
-                            <td id="estatus{{$user->estatus}}">{{$user->estatus}}</td>
+                            <td id="user{{$user->id}}" >{{$user->user}}</td>
+                            <td id="email{{$user->id}}">{{$user->email}}</td>
+                            <td id="type{{$user->id}}">{{$user->type}}</td>
+                            <td id="active{{$user->id}}">{{$user->active}}</td>
+                            <td id="estatus{{$user->id}}">{{$user->estatus}}</td>
                             <td><center><a href="#" onclick="confirmDeleted('deleted{{$user->id}}');" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Eliminar</a></center></td>
                            
                             <td><center><a href="#" id="edit_{{$user->id}}" onclick="edit('/getUpdateUser/{{$user->id}}');" class="btn btn-xs btn-success"><i class="fa fa-pencil"></i> Editar</a></center></td>

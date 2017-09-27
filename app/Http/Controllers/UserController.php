@@ -66,41 +66,44 @@ class UserController extends Controller
 
     public function postUpdateUser()
     {
-    	if(Request::ajax()){
+    	//if(Request::ajax()){
       		$request = Request::all();
-        	//$id = $request['id'];
-            //$user = User::find($id);
 
+        	$id = (int) $request['id'];
+            $user = User::find($id);
         	$rules = [
-    		'email'        => 'required|email|unique:users',
-    		'user'         => 'required|unique:users',
-    		'type'         => 'required|in:user,admin',
+    			'email' => ['required', 'email', 'max:255', 'unique:users,email,'.$id.''],
+    			'user'  => 'required|unique:users,user,'.$id.'',
+    			'type'  => 'required|in:user,admin',
     		];
-
     		$validator = Validator::make($request, $rules);
     		if($validator->fails()) 
 	        {
 	        	return array('fail' => true, 'errors' => $validator->getMessageBag()->toArray()); 
 	        }else
 	        {
-                //$banner->fill($request);
-                /*
-                $banner->title_ban = $request['title_ban'];
-                $banner->content_ban = $request['content_ban'];
-                
-            	if($banner->save()) 
+                $user->fill($request);
+                dd($user->fill($request));
+            	if($user->save()) 
             	{
-            		if(!empty($file)) 
-		            {
-                        //dd($file);
-		                \Storage::disk('imgBanner')->put($filename,  \File::get($file));
-		                return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
-		            }else
-		            {
-		                return array('success' => true, 'message' => trans('message.danger_update'), 'tr_id' => $id);
-		            }
-            	}*/
+            		return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
+            	}
 	        }
-    	}
+    	//}
     }
+
+    public function destroy($id)
+    {
+      $user  = User::find($id);
+      $user->delete();
+      return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
+    }
+
+    public function restore($id)
+    {
+       $user  = User::withTrashed()->where('id', '=', $id);
+       $user->restore();
+       return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id); 
+    }
+
 }

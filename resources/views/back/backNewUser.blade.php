@@ -71,5 +71,69 @@
 				$("#modal_edit").modal("show");
 			});
 		}
+
+		function confirmDeleted(id)
+		{
+			$(document).ready(function () 
+			{	
+				$("#"+id+"").modal("show");
+			});
+		}
+
+		function ajaxDeleted(id, id_deleted, url)
+		{
+			$('.loading').show();
+			$.ajax({ 
+				type: "GET", 
+				url: url, 
+				contentType: false, 
+				success: function (data) 
+				{ 
+					if(data.success)
+					{	
+						$('#tr_'+data.tr_id).hide(500, 'linear');
+						html = '<div class="alert alert-warning alert-dismissable"><i class="fa fa-check-circle-o">';
+						html += '</i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><a href="#" class="alert-link">';
+						html += '</a> LOS DATOS FUERON ELIMINADOS CORRECTAMENTE,SI DESEA DESHACER EL CAMBIO ';
+						//html += '<a href="/restoreNotice/'+id+'">CLICK AQUI</a>';
+						html += '<a href="#" onclick="restore('+id+');" >CLICK AQUI</a>';
+						html += '</div>';
+						$("#menssage_deleted").html(html);
+						$("#menssage_deleted").show(500, 'linear');
+						$("#"+id_deleted+"").modal("hide"); 
+						$('.loading').hide();
+					} 
+				},
+				error: function (xhr, status, error) 
+				{ 
+					alert(xhr.responseText); 
+				} 
+			});
+		}
+
+		function restore(id)
+		{
+           	 var url = '/restoreUser/'+id;
+           	$('.loading').show();
+			$.ajax({ 
+				type: "GET", 
+				url: url, 
+				contentType: false, 
+				success: function (data) 
+				{ 
+					if(data.success)
+					{	
+						$('#tr_'+data.tr_id).show(500, 'linear');
+						$("#menssage_deleted").html('');
+						$("#menssage_deleted").hide(500, 'linear');
+						$('.loading').hide();
+					} 
+				},
+				error: function (xhr, status, error) 
+				{ 
+					alert(xhr.responseText); 
+				} 
+			});
+		}
 	</script>
 @endsection

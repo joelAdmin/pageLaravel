@@ -14,6 +14,8 @@
 		Route:: get('/getTableUser', 'UserController@getTableUser')->middleware('auth');
 		Route:: get('/getUpdateUser/{id}', 'UserController@getUpdate')->middleware('auth');
 		Route:: put('/postUpdateUser', ['as' => 'user.update', 'uses' => 'UserController@postUpdateUser'])->middleware('auth');
+		Route:: get('/deletedUser/{id}', 'UserController@destroy')->middleware('auth');
+		Route:: get('/restoreUser/{id}', ['as' =>  'user/restore', 'uses' => 'UserController@restore']);
 
 		Route:: get('/newBanner', 'BannerController@index')->middleware('auth');
 		Route:: post('/newBanner', 'BannerController@store')->middleware('auth');
