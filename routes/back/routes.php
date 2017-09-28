@@ -9,6 +9,7 @@
 	//Route:: match(['get','post'], '/newNotice', 'NoticeController@notice')->middleware('auth');
 	Route::group(array('before'=>'auth'), function()
 	{
+		Route:: get('import', 'ImportController@import')->middleware('auth');
 		Route:: get('/newUser', 'UserController@index')->middleware('auth');
 		Route:: post('/newUser', 'UserController@store')->middleware('auth');
 		Route:: get('/getTableUser', 'UserController@getTableUser')->middleware('auth');
@@ -16,6 +17,7 @@
 		Route:: put('/postUpdateUser', ['as' => 'user.update', 'uses' => 'UserController@postUpdateUser'])->middleware('auth');
 		Route:: get('/deletedUser/{id}', 'UserController@destroy')->middleware('auth');
 		Route:: get('/restoreUser/{id}', ['as' =>  'user/restore', 'uses' => 'UserController@restore']);
+		Route:: get('/searchUser', 'UserController@search')->middleware('auth');
 
 		Route:: get('/newBanner', 'BannerController@index')->middleware('auth');
 		Route:: post('/newBanner', 'BannerController@store')->middleware('auth');

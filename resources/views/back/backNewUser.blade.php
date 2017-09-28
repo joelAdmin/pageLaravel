@@ -25,12 +25,12 @@
             			<div role="tabpanel" class="tab-pane fade" id="manager">
               				<div class="panel-body">
               					<div id="menssage_deleted"></div>
-			                   {!! Form_::form('search', 'form-inline nav-bar-form nav-bar-left pull-right', 'GET', '/searchBanner', null) !!}
+			                   {!! Form_::form('search', 'form-inline nav-bar-form nav-bar-left pull-right', 'GET', '/searchUser', null) !!}
 			                     <div class="form-group">
 			                        {!! Form_::text_('text_search', 'search', trans('placeholder.input_search'), trans('title.input_search'), null, 'text') !!}
 			                     </div>
 			                     <div class="form-group">
-			                        {!! Form_::select_('id_column', 'column', trans('placeholder.select_search'), trans('title.select_search'), null, array('title_ban'=>trans('label.title'), 'content_ban'=>trans('label.content')), null )!!}
+			                        {!! Form_::select_('id_column', 'column', trans('placeholder.select_search'), trans('title.select_search'), null, array('user'=>trans('label.user'), 'email'=>trans('label.email'), 'type'=>trans('label.type')), null )!!}
 			                     </div>
 			                     <div class="form-group">
 			                         {!! Form_::btn_('btn_search',  'btn btn-info', 'fa-search', trans('label.search')) !!}
@@ -113,7 +113,7 @@
 
 		function restore(id)
 		{
-           	 var url = '/restoreUser/'+id;
+           	var url = '/restoreUser/'+id;
            	$('.loading').show();
 			$.ajax({ 
 				type: "GET", 
@@ -135,5 +135,26 @@
 				} 
 			});
 		}
+
+		$("#btn_search").click(function()
+		{	
+			$('.loading').show(); 
+			$.ajax({
+				type: "GET",
+				url:'/searchUser',
+				data: $("#search").serialize(), // Adjuntar los campos del formulario enviado.
+				success: function(data)
+				{
+				    var html = ''
+				    $("#cont_table").html(data); $('.loading').hide();// Mostrar la respuestas del script PHP.
+				    // return false;
+				},
+				error: function (xhr, status, error) 
+				{ 
+					alert(xhr.responseText); 
+				} 
+			});
+			//return false;
+		});
 	</script>
 @endsection

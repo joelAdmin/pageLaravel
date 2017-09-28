@@ -16,4 +16,27 @@ class User extends Model
     protected $fillable = ['name', 'user', 'email', 'type'];
     protected $hidden = ['remember_token'];
 
+    public function scopesearch()
+    {
+       return 1;
+       //dd($request);
+       /*
+       $search = $request['search'];
+       $column = $request['column'];
+       if (trim($column) != '')
+       {
+            if (trim($search) != '') 
+            {
+                $query->where($column, "LIKE", "%$search%");
+            }
+        }else
+        {
+            if (trim($search) != '') 
+            {
+                $query->where("user", "LIKE", "%$search%");
+                $query->orWhere('email', "LIKE", "%$search%");
+                $query->orWhere('type', "LIKE", "%$search%");
+            }
+        }*/  
+    }
 }

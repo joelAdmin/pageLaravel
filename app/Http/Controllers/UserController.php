@@ -49,7 +49,6 @@ class UserController extends Controller
     public function getTableUser()
     {
         $user = User::paginate();
-        //d($user);
         if ($user->count()>0) {
             return View::make('back.table.user')->with('users', $user);
         }else
@@ -66,7 +65,7 @@ class UserController extends Controller
 
     public function postUpdateUser()
     {
-    	//if(Request::ajax()){
+    	if(Request::ajax()){
       		$request = Request::all();
 
         	$id = (int) $request['id'];
@@ -83,13 +82,13 @@ class UserController extends Controller
 	        }else
 	        {
                 $user->fill($request);
-                dd($user->fill($request));
+                //dd($user->fill($request));
             	if($user->save()) 
             	{
             		return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id);
             	}
 	        }
-    	//}
+    	}
     }
 
     public function destroy($id)
@@ -104,6 +103,42 @@ class UserController extends Controller
        $user  = User::withTrashed()->where('id', '=', $id);
        $user->restore();
        return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id); 
+    }
+
+    public function search()
+    {
+      	if(Request::ajax())
+      	{
+	      	$request = Request::all();
+	      	$search = $request['search'];
+	      	$column = $request['column'];
+	      	//$user = User::where();
+	      	if (trim($column) != '')
+	        {
+	            if (trim($search) != '') 
+	            {
+	                $user = User::where($column, "LIKE", "%$search%")->orderBy('user', 'ASC')->paginate();
+	            }
+	        }else
+	        {
+	            if(trim($search) != '') 
+	            {
+	                $user = User::where("user", "LIKE", "%$search%")->orWhere('email', "LIKE", "%$search%")->orWhere('type', "LIKE", "%$search%")->orderBy('user', 'ASC')->paginate();
+	            }else
+	            {
+	            	 $user = User::paginate();
+	            }
+	        }
+
+	        if($user->total()>0) 
+		    {
+		       	return View::make('back.table.user')->with('users', $user);
+		    }else
+		    {
+		       
+		        return View::make('back.table.user')->with('users', $user)->with('menssage_warning', trans('message.search'));
+		    }
+		}
     }
 
 }

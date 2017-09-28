@@ -40,7 +40,6 @@ class NoticeController extends Controller
         return View::make('back.table.notice')->with('notices', $notices);
       }else
       {
-        //$notices = NoticeModel::paginate();
         $notices = NoticeModel::getNotices(null)->paginate();
         return View::make('back.table.notice')->with('notices', $notices)->with('menssage_warning', trans('message.search'));
       }
