@@ -2,6 +2,7 @@
 
 return [
 
+    'of' => 'de',
     'info_count' => 'Datos de la cuenta',
     'rep_passwd' => 'Repetir Clave',
     'last_name' => 'Apellido y Nombre',
@@ -87,4 +88,23 @@ return [
     'description' => 'Descripción',
     'info_newContact' => 'Información del mensaje',
     'update' => 'Actualizar',
+    'contact' => 'Contacto',
+    'address' => 'Dirección',
+    'telephone' => 'Telelfóno',
+    'services' => 'Servicios',
+    'others' => 'Otros',
+    'links_first' => 'Enlaces de interes',
+    'start_session' => 'Iniciar Sesion',
+    'login' => 'Login',
+    'user_register' => 'Usuarios registrado',
+    'users_new' => 'Usuarios nuevos',
+    'login_facebook' => 'Entrar con facebook',
+    'restore_pass' => 'Olvido su clave?',
+    'calendar' => 'Calendario',
+    'loginFieldset' => 'Ingresar usuario y contraseña',
+    'exit' => 'Salir',
+    'user_perfil' => 'Perfil de usuario',
+    'new_pass' => 'Cambio de clave',
+    'registerUser' => 'Crear usuario',
+    'info' => 'Información',
 ];

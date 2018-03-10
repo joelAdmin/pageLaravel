@@ -16,6 +16,55 @@ class AuthController extends Controller
 		return View::make('back.backHome');
 	}
 
+	public function viewLoginFront()
+    {
+        return View::make('front.form.login');
+    }
+
+    public function postLoginFront()
+    {
+    	$data = [
+			 'email'     => Input::get('user'),
+			 //'name'     => Input::get('user'),
+		     'password' => Input::get('passwd')
+		];
+		
+		$inputs = Request::all();
+		$rules = [
+            'user'   => 'required',
+            'passwd' => 'required',
+        ];
+
+        $messages = [
+        	 'user.required'   => VALID_REQUIRED,
+             'user.min'        => VALID_USER_MIN,
+             'user.max'        => VALID_USER_MAX,
+             'user.regex'      => VALID_REGEX,
+             'passwd.required' => VALID_REQUIRED,
+        ];
+
+        $Validator = Validator::make($inputs, $rules, $messages);
+        
+        if($Validator->fails()) 
+		{
+			return array('fail' => true, 'errors' => $Validator->getMessageBag()->toArray());
+		}elseif(Auth::attempt($data))
+		{
+			//return Redirect::intended('/'); no funciona porq estalmos usando ajax
+			return array('fail' => false);
+			 
+		}else
+		{
+			return array('fail_message' => true, 'alert' => 'danger', 'message' => MSG_ERROR_LOGIN);
+		}
+		/*
+		if ($Validator->fails()) 
+		{
+			return Redirect::to('login')->withErrors($Validator->errors())->withInput(Request::except('passwd'));
+		}
+		return Redirect::to('login')->with('mensaje_error', MSG_ERROR_LOGIN)->withInput();*/
+    }
+
     public function showLogin()
 	{
 		//check is session active (verificar si la session esta activa)
@@ -34,7 +83,6 @@ class AuthController extends Controller
 	public function postLogin()
 	{
 		// we get the data the form (obtenemos los datos del formulario)
-		
 		$data = [
 			 'email'     => Input::get('user'),
 			 //'name'     => Input::get('user'),
@@ -80,6 +128,15 @@ class AuthController extends Controller
         /*** we returned to login and showed a message indicating was closed the session
          (Volvemos al login y mostramos un mensaje indicando que se cerró la sesión)***/
         return Redirect::to('login')->with('error_message', 'Logged out correctly');
+    }
+
+    public function logOutFront()
+    {
+        // we closed the session (Cerramos la sesión)
+        Auth::logout();
+        /*** we returned to login and showed a message indicating was closed the session
+         (Volvemos al login y mostramos un mensaje indicando que se cerró la sesión)***/
+        return Redirect::to('/')->with('error_message', 'Logged out correctly');
     }
 
 }

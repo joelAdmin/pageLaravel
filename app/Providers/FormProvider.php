@@ -15,6 +15,15 @@ class FormProvider extends ServiceProvider
      */
     public function boot()
     {
+        Form::macro('submit_', function ($etiqueta, $arreglo=array()){
+              
+            $comp = '<button type="submit" id="'.$arreglo['id'].'" class="'.$arreglo['class'].'"><i class="fa ';
+            if (isset($arreglo['fa']) && !empty($arreglo['fa'])){$comp .= $arreglo['fa'];}
+
+            $comp.= '"></i> '.$etiqueta.'</button>';
+            return $comp;
+        });
+
         Form::macro('textArea_ck', function ($id, $name, $placeholder, $help, $require, $errors, $size=array())
         {
             if($errors->first($name)) 
@@ -37,7 +46,8 @@ class FormProvider extends ServiceProvider
             return $comp;
         });
 
-        Form::macro('textArea_', function ($id, $name, $label, $placeholder, $help, $require, $errors, $size=array())
+        /*
+        Form::macro('textArea_', function ($id, $name, $label=null, $placeholder, $help, $require, $errors, $size=array())
         {
             if($errors->first($name)) 
             {
@@ -50,6 +60,30 @@ class FormProvider extends ServiceProvider
                 $comp .= '<label for="email" class="col-md-'.$size[0].' control-label">'.$label.'';if($require == 1) {$comp .=  '<b style="color:red;"> *</b>';}$comp .= '</label>';
                 $comp .= '<div class="col-md-'.$size[1].'">';
                 $comp .= Form::textArea($name, old($name), ['id' => $id, 'placeholder' => ''.$placeholder.'', 'title' => ''.$help.'', 'class' => 'form-control']);
+            
+            
+             $comp .= '<span id="span_'.$id.'" class="help-block">'.$errors->first($name).'</span>';
+            
+            $comp .= '</div></div>';
+            return $comp;
+        });*/
+
+        Form::macro('textArea_', function ($id, $name, $label, $placeholder, $help, $require, $errors, $size=array(2,6,3))
+        {
+            if($errors->first($name)) 
+            {
+                $comp = '<div id="div_'.$id.'" class="form-group has-error has-feedback alert alert-danger">';
+            }else 
+            {
+                $comp = '<div id="div_'.$id.'" class="form-group">';
+            }
+                //$comp .= Form::label($name, $label, ['for' => "email", 'class' => 'col-md-'.$size[0].' control-label']);
+                if ($label!=null) {
+                    $comp .= '<label for="email" class="col-md-'.$size[0].' control-label">'.$label.'';if($require == 1) {$comp .=  '<b style="color:red;"> *</b>';}$comp .= '</label>';
+                }
+                
+                $comp .= '<div class="col-md-'.$size[1].'">';
+                $comp .= Form::textArea($name, old($name), ['id' => $id, 'placeholder' => ''.$placeholder.'', 'title' => ''.$help.'', 'class' => 'form-control', 'rows' => $size[2]]);
             
             /*$comp .= '<span id="span_'.$id.'" class="help-block">';
             if($errors->first($name)){ $errors->first($name); }

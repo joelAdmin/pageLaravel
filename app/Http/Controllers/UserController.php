@@ -11,14 +11,54 @@ use App\User;
 
 class UserController extends Controller
 {
+    private $user = null; 
+    public function __construct()
+    {
+        $this->user = new User();
+        return $this->user;
+    }
     public function index()
     {
     	return View::make('back.backNewUser');
     }
 
+    public function viewUserFront()
+    {
+       return View::make('front.form.newUser');
+    }
+
+    public function storeFront()
+    {
+        if (Request::ajax()) 
+        {
+            $request = Request::all();
+            $rules = [
+                'email'        => 'required|email|unique:users',
+                'user'         => 'required|unique:users',
+                'password'     => 'required|min:6',
+                'confirmPassword' => 'required|min:6|same:password',
+            ];
+            $validator = Validator::make($request, $rules);
+            if ($validator->fails()) 
+            {
+                return array('fail' => true, 'errors' => $validator->getMessageBag()->toArray());
+            }else
+            {
+                $this->user->email = $request['email'];
+                $this->user->user = $request['user'];
+                $this->user->type = 'user';
+                $this->user->password = \Hash::make($request['password']);
+                $this->user->name = $request['name'];
+                if($this->user->save()) 
+                {
+                    return array('success' => true, 'message' => trans('message.success_user'));
+                }
+            } 
+        }
+    }
+
     public function store()
     {
-        $user = new User();
         $request = Request::all();
     	$rules = [
     		'email'        => 'required|email|unique:users',
@@ -33,12 +73,12 @@ class UserController extends Controller
     	}else
     	{
             //$id = User::create($request)->id; no pude hacer asignacion masiva corregir
-            $user->email = $request['email'];
-            $user->user = $request['user'];
-            $user->type = $request['type'];
-            $user->password = $request['password'];
-            $user->name = $request['name'];
-            if ($user->save()) 
+            $this->user->email = $request['email'];
+            $this->user->user = $request['user'];
+            $this->user->type = $request['type'];
+            $this->user->password = \Hash::make($request['password']);
+            $this->user->name = $request['name'];
+            if ($this->user->save()) 
             {
                return Redirect::to('/newUser')->with('menssage_success', trans('message.success_save'));
             }
@@ -65,7 +105,8 @@ class UserController extends Controller
 
     public function postUpdateUser()
     {
-    	if(Request::ajax()){
+    	if(Request::ajax())
+        {
       		$request = Request::all();
 
         	$id = (int) $request['id'];

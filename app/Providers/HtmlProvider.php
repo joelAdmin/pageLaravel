@@ -16,6 +16,86 @@ class HtmlProvider extends ServiceProvider
      */
     public function boot()
     {
+        Html::macro('datepicker', function()
+        {
+
+            $html = '
+             <script type="text/javascript">
+                        /* Inicialización en español para la extensión \'UI date picker\' para jQuery. */
+            /* Traducido por Vester (xvester [en] gmail [punto] com). */
+            jQuery(function($){
+               $.datepicker.regional[\'es\'] = {
+                  closeText: \'Cerrar\',
+                  prevText: \'<Ant\',
+                  nextText: \'Sig>\',
+                  currentText: \'Hoy\',
+                  monthNames: [\'Enero\', \'Febrero\', \'Marzo\', \'Abril\', \'Mayo\', \'Junio\', \'Julio\', \'Agosto\', \'Septiembre\', \'Octubre\', \'Noviembre\', \'Diciembre\'],
+                  monthNamesShort: [\'Ene\',\'Feb\',\'Mar\',\'Abr\', \'May\',\'Jun\',\'Jul\',\'Ago\',\'Sep\', \'Oct\',\'Nov\',\'Dic\'],
+                  dayNames: [\'Domingo\', \'Lunes\', \'Martes\', \'Miércoles\', \'Jueves\', \'Viernes\', \'Sábado\'],
+                  dayNamesShort: [\'Dom\',\'Lun\',\'Mar\',\'Mié\',\'Juv\',\'Vie\',\'Sáb\'],
+                  dayNamesMin: [\'Do\',\'Lu\',\'Ma\',\'Mi\',\'Ju\',\'Vi\',\'Sá\'],
+                  weekHeader: \'Sm\',
+                  dateFormat: \'dd/mm/yy\',
+                  firstDay: 1,
+                  isRTL: false,
+                  showMonthAfterYear: false,
+                  /*
+                  option:true,
+                  changeMonth: true,
+                  changeYear: true,*/
+
+                  yearSuffix: \'\'};
+               $.datepicker.setDefaults($.datepicker.regional[\'es\']);
+            });
+            </script>
+            <div id="calendario"></div>
+      
+            <script>
+                $(function() {
+                    $( "#calendario" ).datepicker({
+                        dateFormat: \'dd/mm/yy\',
+                        inline: true,
+                        
+                          \'option\': false});
+                    });
+            </script>';
+            return $html;
+        });
+
+        Html::macro('div_modal', function($id, $modal=null)
+        {
+            if($modal == null) {$content = 'content_modal';}else{$content='content_modal-lg';}
+            $html = '
+                        <div style="display:None;" id="'.$id.'" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog '.$modal.'">
+                                <div id="'.$content.'" class="modal-content">';      
+           $html .= '</div>
+                        </div>
+                            </div>';
+            return $html;
+        });
+
+        Html::macro('alert', function($id, $clas)
+        {
+            $html = '<div style="display:None;" id="'.$id.'" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                      <div class="container">
+                        <div class="row">
+                          <div class="'.$clas.'">
+                              <div class="panel panel-default">
+                             
+                               
+                                    <div id="content_modal_alert" class="modal-content"></div>';
+
+            $html .='
+                            </div>
+                                </div>
+                                    </div>
+                                        </div>
+                                            </div>';
+
+            return $html;
+        });
+
         Html::macro('banner', function($id, $ancho, $alto, $arreglo, $efecto, $activar)
         {
             $html = '
@@ -160,6 +240,8 @@ class HtmlProvider extends ServiceProvider
         Html::macro('banner_01', function($id, $ancho, $alto, $arreglo, $efecto, $activar)
         {
             $html = '
+                <script language="javascript" type="text/javascript" src="'.asset('/libs/lof_jquery/js/jquery.easing.js').'"></script>
+          <script language="javascript" type="text/javascript" src="'.asset('/libs/lof_jquery/js/script.js').'"></script>
                 <style type="text/css" media="screen">
                     @import "'.asset('/libs/lof_jquery/css/style1.css').'";
                 </style>
@@ -292,6 +374,8 @@ class HtmlProvider extends ServiceProvider
         Html::macro('banner_03', function($id, $ancho, $alto, $arreglo, $efecto, $activar)
         {
             $html = '
+                <script language="javascript" type="text/javascript" src="'.asset('/libs/lof_jquery/js/jquery.easing.js').'"></script>
+          <script language="javascript" type="text/javascript" src="'.asset('/libs/lof_jquery/js/script.js').'"></script>
                 <style type="text/css" media="screen">
                     @import "'.asset('/libs/lof_jquery/css/style3.css').'";
                 </style>
@@ -433,6 +517,8 @@ class HtmlProvider extends ServiceProvider
         Html::macro('banner_04', function($id, $ancho, $alto, $arreglo, $efecto, $activar)
         {
             $html = '
+                <script language="javascript" type="text/javascript" src="'.asset('/libs/lof_jquery/js/jquery.easing.js').'"></script>
+             <script language="javascript" type="text/javascript" src="'.asset('/libs/lof_jquery/js/script.js').'"></script>
                 <style type="text/css" media="screen">
                     @import "'.asset('/libs/lof_jquery/css/style4.css').'";
                 </style>
@@ -550,6 +636,31 @@ class HtmlProvider extends ServiceProvider
             ';
 
             return $html;
+        });
+
+        Html::macro('slider_banner', function($id, $width, $height, $arreglo){
+
+            $html  ='<div class="slider">
+                    <div id="coin-slider"> ';
+                    foreach ($arreglo as $key => $sliders) 
+                    {
+                        if (is_array($sliders)) 
+                        {
+                            foreach ($sliders as $key2 => $slider) 
+                            {
+                                 $html .='<a href="#">';
+                                 if ($key2 == 'imagen') {
+                                     $html .= ' <img src="'.$slider.'" width="'.$width.'" height="'.$height.'" alt="" />';
+                                 }
+                                 $html .= '</a>';
+                            }
+                        }                    
+                    }
+                       $html .= '</div>
+                    <div class="clr"></div>
+            </div>';
+            return $html;
+
         });
 
         Html::macro('modalDeleted', function($id, $id_deleted, $url)

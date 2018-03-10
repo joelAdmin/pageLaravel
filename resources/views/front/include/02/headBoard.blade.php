@@ -1,6 +1,6 @@
 
     <!--start MENU DE PAGINA -->
-    <a href="#" id="cintillo"><img src="plantillas/02/css/images/cintillo.jpg" width="970px" height="40px" alt="logo"/></a><br><br>
+    <!--<a href="#" id="cintillo"><img src="plantillas/02/css/images/cintillo.jpg" width="970px" height="40px" alt="logo"/></a><br><br>-->
     <div id="navigations">
       <nav>
         <ul>

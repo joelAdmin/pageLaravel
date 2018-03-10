@@ -9,8 +9,16 @@ Route::group(['middleware' => ['web']], function ()
 		Route:: get('/', 'PageController@index');
 		//esta ruta nos servira para cerrar sesión.
 		Route::get('logout', 'AuthController@logout');
+		Route::get('logoutFront', 'AuthController@logoutFront');
 	});
 	
+	//Route::get('/newCommitFront/{commit}/{id_Not}', 'CommitController@store');
+	Route::post('/newCommitFront', 'CommitController@store');
+	Route::get('/newAnswer/{id}', 'CommitController@getNewAnswer');
+	Route::post('/newAnswerFront', 'AnswerController@store');
+
+	Route::get('/newUserFront', 'UserController@viewUserFront');
+	Route::post('/newUserFront', 'UserController@storeFront');
 	Route::get('/backHome', 'AuthController@index');
 	Route::get('login', 'AuthController@showLogin');
 	Route::post('login', 'AuthController@postLogin');
@@ -18,6 +26,8 @@ Route::group(['middleware' => ['web']], function ()
 	Route::get('/readMore/{id}', 'PageController@readMore');
 	Route::get('/newContact', 'ContactController@newContact');
 	Route::post('/newContact', 'ContactController@store');
+	Route::get('/loginFront', 'AuthController@viewLoginFront');
+	Route::post('/loginFront', 'AuthController@postLoginFront');
 	Route::get('lang/{lang}', function ($lang) 
 	{
     	session(['lang' => $lang]);

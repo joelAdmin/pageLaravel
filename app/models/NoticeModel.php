@@ -96,6 +96,20 @@ class NoticeModel extends Model
         return $query;
     }
 
+    public static function getCommit()
+    {
+        /*$query = DB::table('notices')->join('images_notices', 'notices.id_Not', '=', 'images_notices.id_not')->join('images', 'images.id_Img', '=', 'images_notices.id_img')->leftjoin('commits_notices_users', 'notices.id_Not', '=', 'commits_notices_users.id_not')->leftjoin('commits', 'commits.id', '=', 'commits_notices_users.id_com');*/
+        $query = DB::table('commits')->join('commits_notices_users', 'commits.id', '=', 'commits_notices_users.id_com')->join('users', 'users.id', '=', 'commits_notices_users.id_use');//->orderBy('commits_notices_users.id', 'DESC');
+        /*->groupBy('notices.id_Not', 'notices.title_not', 'images.name_img', 'notices.inlet_not', 'commits.commit')->select('notices.id_Not', 'notices.title_not', 'images.name_img', 'notices.inlet_not', 'commits.commit');*/
+        return $query;
+    }
+
+    public static function getAnswer()
+    {
+        $query = DB::table('answers')->join('answers_commits_users', 'answers.id', '=', 'answers_commits_users.id_ans')->join('users', 'users.id', '=', 'answers_commits_users.id_use');
+        return $query;
+    }
+
     public static function category()
     {
       //$users = Pilot::all()->lists('nif');

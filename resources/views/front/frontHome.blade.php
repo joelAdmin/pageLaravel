@@ -1,1 +1,1 @@
-@extends('front/base_pagina')
+@extends('front.include.03.base_pagina')

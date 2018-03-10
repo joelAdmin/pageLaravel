@@ -58,6 +58,26 @@
 		{
 			echo '</fieldset></div></div></div>';
 		}
+		public static function alert($id, $clas)
+		{
+			$html = '<div style="display:None;" id="'.$id.'" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				      <div class="container">
+				        <div class="row">
+				          <div class="'.$clas.'">
+				              <div class="panel panel-default">
+				             
+				               
+				                	<div id="content_modal_alert" class="modal-content"></div>';
+
+			$html .='
+			         		</div>
+			        			</div>
+			      					</div>
+			    						</div>
+											</div>';
+
+			echo $html;
+		}
 		public static function modalFieldset($id, $clas, $legend=array(), $modal=true)
 		{
 			//col-md-5 col-md-offset-4  fa fa-lock
@@ -65,7 +85,7 @@
 			{
 				echo'<script type="text/javascript">
     				$(document).ready(function() 
-    				{
+    				{	
     					$("#'.$id.'").modal("show");
     				});
   				</script> ';

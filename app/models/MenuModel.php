@@ -27,7 +27,7 @@ class MenuModel extends Model
 
     public static function getMenuAll()
     {
-        return  DB::table('menus')->leftJoin('submenus', 'submenus.id_men', '=', 'menus.id_Men')->select('submenus.id_men', 'menus.id_Men', 'menus.etiqueta_men', 'submenus.etiqueta_sub', 'submenus.event_sub', 'submenus.id_Sub')->get();
+        return  DB::table('menus')->leftJoin('submenus', 'submenus.id_men', '=', 'menus.id_Men')->where('submenus.deleted_at', '=', null)->select('submenus.id_men', 'menus.id_Men', 'menus.etiqueta_men', 'submenus.etiqueta_sub', 'submenus.event_sub', 'submenus.id_Sub')->get();
     }
 
     public function scopeSearch($query, $request)
