@@ -1,4 +1,5 @@
-   <?php  $num_commit =0; ?>
+@if(Auth::check())
+    <?php  $num_commit =0; ?>
     <?php 
       
       if (isset($id_Not) && !empty($id_Not)) {
@@ -8,7 +9,7 @@
        } 
     ?>
     <label>&nbsp;</label>
-    <label><i class="fa fa-edit"></i>ComentariosSS:</label>
+    <label><i class="fa fa-edit"></i>Comentarios:</label>
     <div id="">
       @foreach($commits as $commit)
         @if($commit->id_not==$id)
@@ -38,14 +39,14 @@
     </div>
     <script type="text/javascript">
       $(document).ready(function () {
-        $('#commit_ant{{$id}}').html('<i class="fa fa-eye"><a href="#">  ver ateriores <b>({{$num_commit - 3}})</b><a></i> ');        
+        $('#commit_ant{{$id}}').html('<i class="fa fa-eye"><a href="#">  ver ateriores <b>({{$num_commit - 3}})</b><a></i> ');
+                  
         $('#num_commit{{$id}}').html('{{$num_commit}}');//?//modica para el total de comentarios
       });
     </script>
 
     <div id="cont_commit{{$id}}"></div>
     <div class="panel panel-body">
-          @if(Auth::check())
                 <div class="row">
                   <div id="new_commit_{{$id}}"></div>
                   {!! Form::open(['url' => '#', 'id' => "form_$id", 'class' => 'form-horizontal', 'method' => 'post', 'files' => false]) !!}
@@ -60,11 +61,11 @@
                     }); 
                   </script>
                 </div>
-          @else
-              <label><i class="fa fa-edit"></i>Comentarios:</label>
-              <div class="panel panel-body">
-                <textarea onclick="ajaxLoadModal('/loginFront', 'content_modal', 'modalShow');" class="form-control" cols="" rows="2" name="commit" placeholder=" comente aqui.."></textarea>
-              </div>
-          @endif
                 
     </div>
+@else
+    <label><i class="fa fa-edit"></i>Comentarios:</label>
+    <div class="panel panel-body">
+      <textarea onclick="ajaxLoadModal('/loginFront', 'content_modal', 'modalShow');" class="form-control" cols="" rows="2" name="commit" placeholder=" comente aqui.."></textarea>
+    </div>
+@endif
