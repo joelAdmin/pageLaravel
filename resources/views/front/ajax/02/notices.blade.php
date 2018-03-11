@@ -20,6 +20,8 @@
 		</div>
 		<span class="more"><a TITLE="{{ trans('title.read_more') }}" href="#" onclick='showAjax("/readMore/{{$notice->id_Not}}");' ><font size="2"><i class="fa fa-plus fa-2"></i> {{ trans('label.read_more') }}</font></a></span>
     </article>
+
+    @include('front.include.03.commit')
 @endforeach
 <div class="panel-body"><em>Total<b> {{$notices->total()}}</b> (Pag <b>{{$notices->currentPage()}}</b> {{ trans('label.of') }} <b>{{ $notices->total()/2 }}</b>)</em><br></div>
 <div class="pull-right"> {!! str_replace('/?','?',$notices->appends(Request::all())->render()) !!}</div>

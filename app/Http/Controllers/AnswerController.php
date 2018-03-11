@@ -29,7 +29,7 @@ class AnswerController extends Controller
 	       	  //dd($find_answer);
 	       	  $pivot = $find_answer->commits_users()->attach($id, ['id_use' => \Auth::User()->id]);
 	       	  $answers = NoticeModel::getAnswer()->orderBy('id_ans', 'desc')->where('id_com', '=', $id)->get();
-	       	  return view("front.ajax.03.answers", ['answers' => $answers]);
+	       	  return view("front.ajax.03.answers", ['answers' => $answers, 'id_com'=>$id]);
 	       }
 	    }
     }

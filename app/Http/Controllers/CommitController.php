@@ -47,9 +47,6 @@ class CommitController extends Controller
     	if (Request::ajax()) 
     	{
     		return view('front.ajax.03.newAnswer', ['id_not' => $id]);
-    	}else
-    	{
-    		return view('front.ajax.03.newAnswer', ['id_not' => $id]);
     	}
     }
 }

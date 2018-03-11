@@ -14,6 +14,7 @@
                    <!--<li><a href="#" class="icoLinkedin a_background" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>-->
               </ul>       
           </div>
+          
             <p class="spec"><a title="{{ trans('title.read_more') }}" href="/" class="rm" ><i class="fa fa-reply fa-2"></i> {{ trans('label.back') }}</a></p>
           </div>
           <div class="clr"></div>
