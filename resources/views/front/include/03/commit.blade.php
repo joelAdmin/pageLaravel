@@ -1,7 +1,7 @@
 @if(Auth::check())
     <?php  $num_commit =0; ?>
     <label>&nbsp;</label>
-    <label><i class="fa fa-edit"></i>Comentarios:</label>
+    <label><i class="fa fa-edit"></i>Comentariosss:</label>
     <div id="commits_{{$notice->id_Not}}">
       @foreach($commits as $commit)
         @if($commit->id_not==$notice->id_Not)
