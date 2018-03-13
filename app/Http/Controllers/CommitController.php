@@ -37,11 +37,20 @@ class CommitController extends Controller
     	}
     }
 
-    public function getNewAnswer($id)
+    public function getNewAnswer($id, $pref)
     {
     	if (Request::ajax()) 
     	{
-    		return view('front.ajax.03.newAnswer', ['id_not' => $id]);
+    		return view('front.ajax.03.newAnswer', ['id_com' => $id, 'pref'=>$pref]);
+    	}
+    }
+    public function viewCommits($id)
+    {
+    	if (Request::ajax()) 
+    	{
+    		$commits = NoticeModel::getCommit()->orderBy('id_com', 'desc')->get();
+        	$answers = NoticeModel::getAnswer()->orderBy('id_ans', 'desc')->get();
+	       	return view("front.ajax.03.commit", ['commits' => $commits, 'answers' => $answers, 'id_Not' => $id, 'page' => count($commits), 'pref' => 'view']);
     	}
     }
 }
