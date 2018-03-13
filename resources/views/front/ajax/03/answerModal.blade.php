@@ -10,17 +10,14 @@
 @foreach($answers as $answer)
   @if($answer->id_com==$id)
     <?php $num_answer++; ?>
-      @if($num_answer < 10)
         <small style="margin-left: 15px;" class="btn-default">
           <u class="btn-default"><i class="fa fa-user"></i>  <b> [{{$answer->name}}]</b></u>
           <i>{!! $answer->commit !!} </i>
         </small>
-        @if($num_answer == 9)
-            <div id="answer_ant{{$answer->id_com}}"></div>    
-        @endif 
-      @endif
   @endif                          
 @endforeach 
+
+
 
 <script type="text/javascript">
                 $(document).ready(function () {

@@ -34,4 +34,13 @@ class AnswerController extends Controller
 	       }
 	    }
     }
+
+    public function viewAnswers($id)
+    {
+    	//if (Request::ajax()) {
+    		
+        	$answers = NoticeModel::getAnswer()->where('id_com', '=', $id)->orderBy('id_ans', 'desc')->get();
+	       	return view("front.ajax.03.answerModal", ['answers' => $answers, 'id_com' => $id]);
+    	//}
+    }
 }

@@ -3,10 +3,10 @@
       if (isset($id_Not) && !empty($id_Not)) {$id = $id_Not;}else {$id = $notice->id_Not;} 
       if(isset($page) && !empty($page)){$page = $page;}else{$page=4;}
   ?>
-  <div class="panel panel-body" id="commits_{{$id}}">
-    <label>&nbsp;</label>
-    <label><i class="fa fa-edit"></i>Comentarios:</label>
-    <div id="">
+  <div class="panel panel-body" id="commits_modal{{$id}}">
+    
+    <div class="panel panel-head" id=""><label><i class="fa fa-edit"></i>Comentarios:</label></div>
+    <div class="lcontainer" id="">
       @foreach($commits as $commit)
         @if($commit->id_not==$id)
           <?php $num_commit++; ?>
@@ -18,13 +18,13 @@
                  {!! $commit->commit !!}
                 </small>
 
-                <div id="answer_{{$commit->id_com}}">
-                  @include('front.ajax.03.answers')
+                <div id="answer_modal{{$commit->id_com}}">
+                  @include('front.ajax.03.answers')                  
                 </div>
               </div><br>
-              <div id="cont_answer{{$commit->id_com}}">
+              <div id="cont_answer_modal{{$commit->id_com}}">
                 @if(Auth::check())
-                  <button onclick="ajaxLoad_v2('/newAnswer/{{$commit->id_com}}','cont_answer{{$commit->id_com}}');" class="btn-xs btn-info"><i class="fa fa-facebook"></i> responder</button>
+                  <button onclick="ajaxLoad_v2('/newAnswerModal/{{$commit->id_com}}','cont_answer_modal{{$commit->id_com}}');" class="btn-xs btn-info"><i class="fa fa-facebook"></i> responder</button>
                 @else
                   <button onclick="ajaxLoadModal('/loginFront', 'content_modal', 'modalShow');" class="btn-xs btn-info"><i class="fa fa-facebook"></i> responder</button>
                 @endif
@@ -49,15 +49,16 @@
           @if(Auth::check())
                 <div class="row">
                   <div id="new_commit_{{$id}}"></div>
-                  {!! Form::open(['url' => '#', 'id' => "form_$id", 'class' => 'form-horizontal', 'method' => 'post', 'files' => false]) !!}
+                  {!! Form::open(['url' => '#', 'id' => "form_modal$id", 'class' => 'form-horizontal', 'method' => 'post', 'files' => false]) !!}
                     {!! Form::hidden('id', $id) !!}
-                    {!! Form::textArea_("commit_$id", "commit_$id", null, "<".Auth::User()->name."> ".trans('placeholder.basic'), trans('title.input_description'), 1, $errors, array(0,10,2)) !!}
-                    {!! Form::submit_('comentar',  ['class' => 'btn-xs btn-success', 'id'=>"submit_$id", 'title'=>'enviar', 'fa'=>'fa-rss']) !!} 
+                    {!! Form::hidden('modal', true) !!}
+                    {!! Form::textArea_("modal_commit_$id", "commit_$id", null, "<".Auth::User()->name."> ".trans('placeholder.basic'), trans('title.input_description'), 1, $errors, array(0,10,2)) !!}
+                    {!! Form::submit_('comentar',  ['class' => 'btn-xs btn-success', 'id'=>"submit_modal$id", 'title'=>'enviar', 'fa'=>'fa-rss']) !!} 
                   {!! Form::close() !!}
                   <script type="text/javascript">
                     $(document).ready( function()
                     {
-                      sendForm_id("submit_{{$id}}", "/newCommitFront", "form_{{$id}}", "commits_{{$id}}");  
+                      sendForm_id("submit_modal{{$id}}", "/newCommitFront", "form_modal{{$id}}", "commits_modal{{$id}}");  
                     }); 
                   </script>
                 </div>

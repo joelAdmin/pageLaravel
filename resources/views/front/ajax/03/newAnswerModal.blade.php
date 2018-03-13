@@ -9,7 +9,7 @@
       <script type="text/javascript">
         $(document).ready( function()
         {
-          sendForm_commit("submit_{{$id_com}}", "/newAnswerFront", "form_answer_{{$id_com}}", "answer_{{$id_com}}");  
+          sendForm_commit("submit_{{$id_com}}", "/newAnswerFront", "form_answer_{{$id_com}}", "answer_modal{{$id_com}}");  
         }); 
       </script>
     </div>                                         

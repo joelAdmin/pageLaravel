@@ -125,6 +125,56 @@ function sendForm_commit(btn_submit, url, form, id )
     }); 
 }
 
+function sendForm_id(btn_submit, url, form, id ) 
+{
+  
+  $('#'+btn_submit).click(function()
+    { 
+      $('.loading').show();
+      $.ajax({
+        type: "POST",
+        url:url,
+        data:  $('#'+form).serialize(),
+        success: function(data)
+        {
+          if(data.fail)
+          {
+
+            $('#'+form).find(':input').each(function ()  
+            { 
+                var index_name = $(this).attr('name');
+                var index_id = $(this).attr('id');
+                if(index_name in data.errors) 
+                { 
+                  $("#div_" + index_id + "").addClass("has-error has-feedback alert alert-danger");  
+                  $("#span_" + index_id + "").html(data.errors[index_name]); 
+                }else
+                { 
+                  $("#div_" + index_id + "").removeClass("has-error has-feedback alert alert-danger"); 
+                  $("#span_" + index_id + "").empty(); 
+                }
+                $('.loading').hide();
+            });
+          }else
+          {
+              $('#'+form).find(':input').each(function ()  
+              {
+                  var index_name = $(this).attr('name');
+                  var index_id = $(this).attr('id');
+                  $("#div_" + index_id + "").removeClass("has-error has-feedback alert alert-danger"); 
+                  $("#span_" + index_id + "").empty();
+              });
+              
+              clear_form(form);
+              $("#"+id+"").html(data);
+              $('.loading').hide();
+            }
+        }
+      });
+      return false;
+    }); 
+}
+
 function sendForm(btn_submit, url, form ) 
 {
 	
