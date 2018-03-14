@@ -14,6 +14,7 @@ function showAjax(url)
 function ajaxLoad_v2(filename, cont_table) 
 { 
   cont_table = typeof cont_table !== 'undefined' ? cont_table : 'cont_table'; 
+  $("#" + cont_table).empty();//limpio el div antes de mostrarlo
   //$('.loading').show(); 
   $.ajax({ 
     type: "GET", 
@@ -34,6 +35,7 @@ function ajaxLoad_v2(filename, cont_table)
 function ajaxLoad(filename, cont_table) 
 { 
 	cont_table = typeof cont_table !== 'undefined' ? cont_table : 'cont_table'; 
+  $("#" + cont_table).empty();//limpio el div antes de mostrarlo
 	$('.loading').show(); 
 	$.ajax({ 
 		type: "GET", 

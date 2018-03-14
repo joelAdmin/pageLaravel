@@ -19,7 +19,7 @@
                 </small>
 
                 <div id="answer_{{$commit->id_com}}">
-                  @include('front.ajax.03.answers')
+                  @include('front.include.answers')
                 </div>
               </div><br>
               <div id="cont_answer{{$commit->id_com}}">

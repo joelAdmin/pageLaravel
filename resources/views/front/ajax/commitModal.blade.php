@@ -5,8 +5,8 @@
   ?>
   <div class="panel panel-body" id="commits_modal{{$id}}">
     
-    <div class="panel panel-head" id=""><label><i class="fa fa-edit"></i>Comentarios:</label></div>
-    <div class="lcontainer" id="">
+    <div class="panel panel-head" id=""><label><i class="fa fa-edit"></i>ComentariosModal:</label></div>
+    <div class="" id="">
       @foreach($commits as $commit)
         @if($commit->id_not==$id)
           <?php $num_commit++; ?>
@@ -19,7 +19,7 @@
                 </small>
 
                 <div id="answer_modal{{$commit->id_com}}">
-                  @include('front.ajax.03.answers')                  
+                  @include('front.include.answers')                  
                 </div>
               </div><br>
               <div id="cont_answer_modal{{$commit->id_com}}">
@@ -71,4 +71,3 @@
                 
     </div>
   </div>
-

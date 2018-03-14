@@ -32,10 +32,10 @@ class CommitController extends Controller
         			$answers = NoticeModel::getAnswer()->orderBy('id_ans', 'desc')->get();
         			if (isset($inputs['modal']) && ($inputs['modal']=true)) {
 
-        				return view("front.ajax.03.commitModal", ['commits' => $commits, 'answers' => $answers, 'id_Not' => $id_not, 'page' => count($commits)]);
+        				return view("front.ajax.commitModal", ['commits' => $commits, 'answers' => $answers, 'id_Not' => $id_not, 'page' => count($commits)]);
         			}else
         			{
-        				return view("front.ajax.03.commit", ['commits' => $commits, 'answers' => $answers, 'id_Not' => $id_not]);
+        				return view("front.include.commit", ['commits' => $commits, 'answers' => $answers, 'id_Not' => $id_not]);
         			}        			
 	        	}
 	        } 		
@@ -46,7 +46,7 @@ class CommitController extends Controller
     {
     	if (Request::ajax()) 
     	{
-    		return view('front.ajax.03.newAnswer', ['id_com' => $id]);
+    		return view('front.ajax.newAnswer', ['id_com' => $id]);
     	}
     }
 
@@ -54,7 +54,7 @@ class CommitController extends Controller
     {
     	if (Request::ajax()) 
     	{
-    		return view('front.ajax.03.newAnswerModal', ['id_com' => $id]);
+    		return view('front.ajax.newAnswerModal', ['id_com' => $id]);
     	}
     }
 
@@ -65,7 +65,7 @@ class CommitController extends Controller
     	{
     		$commits = NoticeModel::getCommit()->orderBy('id_com', 'desc')->get();
         	$answers = NoticeModel::getAnswer()->orderBy('id_ans', 'desc')->get();
-	       	return view("front.ajax.03.commitModal", ['commits' => $commits, 'answers' => $answers, 'id_Not' => $id, 'page' => count($commits)]);
+	       	return view("front.ajax.commitModal", ['commits' => $commits, 'answers' => $answers, 'id_Not' => $id, 'page' => count($commits)]);
     	}
     }
 }
