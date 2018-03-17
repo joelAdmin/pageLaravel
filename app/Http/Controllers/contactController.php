@@ -13,23 +13,27 @@ class ContactController extends Controller
 {
     public function newContact()
     {
-    	return view('front.form.contact');
+        if (Request::ajax()) {	
+         return view('front.form.contact');
+        }
     }
 
     public function store()
     {
-    	$request = Request::all();
-    	$rules = [
-    		'name_con'        => 'required',
-    		'email_con'       => 'required',
-    		'description' => 'required',
-    	];
-    	$validator = Validator::make($request, $rules);
-    	if($validator->fails()) 
-    	{
+    	if (Request::ajax()) {
+                    
+            $request = Request::all();
+        	   $rules = [
+        		'name_con'        => 'required',
+        		'email_con'       => 'required',
+        		'description' => 'required',
+        	   ];
+    	   $validator = Validator::make($request, $rules);
+    	   if($validator->fails()) 
+    	   {
     		return array('fail' => true, 'errors' => $validator->getMessageBag()->toArray());
-    	}else
-    	{
+    	   }else
+    	   {
     		$id_Con = ContactModel::create($request)->id_Con;
     		if ($id_Con) 
             {
@@ -42,6 +46,7 @@ class ContactController extends Controller
                 });*/
                 return array('success' => true, 'message' => trans('message.success_update'), 'tr_id' => $id_Con);	
     		}
-    	}
+    	   }
+        }
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use App\models\AnswerModel;
 use App\models\NoticeModel;
+use App\models\CommitModel;
 
 class AnswerController extends Controller
 {
@@ -26,11 +27,26 @@ class AnswerController extends Controller
 	       if ($result) 
 	       {
 	       	  $find_answer = AnswerModel::find($result);
-	       	  //dd($find_answer);
 	       	  $pivot = $find_answer->commits_users()->attach($id, ['id_use' => \Auth::User()->id]);
-	       	  $answers = NoticeModel::getAnswer()->orderBy('id_ans', 'desc')->where('id_com', '=', $id)->get();
-	       	  return view("front.ajax.03.answers", ['answers' => $answers, 'id_com'=>$id]);
+	       	  $answers = NoticeModel::getAnswer()->orderBy('id_ans', 'desc')->get();
+	       	  if (isset($inputs['modal']) && ($inputs['modal']=true)) 
+	       	  {
+	       	  	return view("front.include.answers", ['answers' => $answers, 'id_com' => $id, 'page_asnwer' => count(NoticeModel::getAnswer()->orderBy('id_ans', 'desc')->where('id_com', '=', $id)->get())]);
+	       	  }else
+	       	  {
+	       	  	return view("front.include.answers", ['answers' => $answers, 'id_com' => $id]);
+	       	  }
 	       }
 	    }
+    }
+
+    public function viewAnswers($id)
+    {
+    	if (Request::ajax()) {
+    		
+        	$answers = NoticeModel::getAnswer()->where('id_com', '=', $id)->orderBy('id_ans', 'desc')->get();
+        	$commit = NoticeModel::getCommit()->where('id_com', '=', $id)->orderBy('id_com', 'desc')->get()[0];
+	       	return view("front.ajax.answerModal", ['answers' => $answers, 'id_com' => $id, 'commit' => $commit]);
+    	}
     }
 }

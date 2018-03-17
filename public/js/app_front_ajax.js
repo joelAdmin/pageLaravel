@@ -14,6 +14,7 @@ function showAjax(url)
 function ajaxLoad_v2(filename, cont_table) 
 { 
   cont_table = typeof cont_table !== 'undefined' ? cont_table : 'cont_table'; 
+  $("#" + cont_table).empty();//limpio el div antes de mostrarlo
   //$('.loading').show(); 
   $.ajax({ 
     type: "GET", 
@@ -34,6 +35,7 @@ function ajaxLoad_v2(filename, cont_table)
 function ajaxLoad(filename, cont_table) 
 { 
 	cont_table = typeof cont_table !== 'undefined' ? cont_table : 'cont_table'; 
+  $("#" + cont_table).empty();//limpio el div antes de mostrarlo
 	$('.loading').show(); 
 	$.ajax({ 
 		type: "GET", 
@@ -113,6 +115,56 @@ function sendForm_commit(btn_submit, url, form, id )
                   var index_name = $(this).attr('name');
                   $("#div_" + index_name + "").removeClass("has-error has-feedback alert alert-danger"); 
                   $("#span_" + index_name + "").empty();
+              });
+              
+              clear_form(form);
+              $("#"+id+"").html(data);
+              $('.loading').hide();
+            }
+        }
+      });
+      return false;
+    }); 
+}
+
+function sendForm_id(btn_submit, url, form, id ) 
+{
+  
+  $('#'+btn_submit).click(function()
+    { 
+      $('.loading').show();
+      $.ajax({
+        type: "POST",
+        url:url,
+        data:  $('#'+form).serialize(),
+        success: function(data)
+        {
+          if(data.fail)
+          {
+
+            $('#'+form).find(':input').each(function ()  
+            { 
+                var index_name = $(this).attr('name');
+                var index_id = $(this).attr('id');
+                if(index_name in data.errors) 
+                { 
+                  $("#div_" + index_id + "").addClass("has-error has-feedback alert alert-danger");  
+                  $("#span_" + index_id + "").html(data.errors[index_name]); 
+                }else
+                { 
+                  $("#div_" + index_id + "").removeClass("has-error has-feedback alert alert-danger"); 
+                  $("#span_" + index_id + "").empty(); 
+                }
+                $('.loading').hide();
+            });
+          }else
+          {
+              $('#'+form).find(':input').each(function ()  
+              {
+                  var index_name = $(this).attr('name');
+                  var index_id = $(this).attr('id');
+                  $("#div_" + index_id + "").removeClass("has-error has-feedback alert alert-danger"); 
+                  $("#span_" + index_id + "").empty();
               });
               
               clear_form(form);

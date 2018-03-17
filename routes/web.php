@@ -1,5 +1,4 @@
 <?php
-
 Route:: get('/', 'PageController@index');
 Route::group(['middleware' => ['web']], function () 
 {
@@ -15,6 +14,10 @@ Route::group(['middleware' => ['web']], function ()
 	//Route::get('/newCommitFront/{commit}/{id_Not}', 'CommitController@store');
 	Route::post('/newCommitFront', 'CommitController@store');
 	Route::get('/newAnswer/{id}', 'CommitController@getNewAnswer');
+	//Route::get('/newAnswerModal/{id}', 'CommitController@getNewAnswerModal');
+	Route::get('/newAnswerModal/{id}', 'CommitController@getNewAnswerModal');
+	Route::get('/viewCommits/{id}', 'CommitController@viewCommits');
+	Route::get('/viewAnswers/{id}', 'AnswerController@viewAnswers');
 	Route::post('/newAnswerFront', 'AnswerController@store');
 
 	Route::get('/newUserFront', 'UserController@viewUserFront');

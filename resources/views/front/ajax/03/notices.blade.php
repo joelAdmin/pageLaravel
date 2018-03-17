@@ -16,8 +16,9 @@
                    <!--<li><a href="#" class="icoLinkedin a_background" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>-->
               </ul>       
           </div><br>
-            
-           @include('front.include.03.commit')
+          <!--<div id="commits_{{$notice->id_Not}}"> -->
+             @include('front.include.commit')
+          
             <p class="spec"><a title="{{ trans('title.read_more') }}" href="#" class="rm" onclick='showAjax("/readMore/{{$notice->id_Not}}");'>{{ trans('label.read_more') }}</a></p>
           </div>
           <div class="clr"></div>

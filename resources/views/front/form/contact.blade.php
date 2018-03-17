@@ -10,7 +10,7 @@
         {!! Html_::fieldset('fieldset0', 'col-md-auto col-md-offset-0', array("fa-newspaper-o", trans('label.info_newContact'))) !!}
           {!! Form::text_('name_con', 'name_con', trans('label.name'), trans('placeholder.basic'), trans('title.input_name'), 1, $errors, array(2,6)) !!}
           {!! Form::text_('email_con', 'email_con', trans('label.email'), trans('placeholder.basic'), trans('title.input_email'), 1, $errors, array(2,6)) !!}
-          {!! Form::textArea_('description', 'description', trans('label.description'), trans('placeholder.basic'), trans('title.input_description'), 1, $errors, array(2,6)) !!}
+          {!! Form::textArea_('description', 'description', trans('label.description'), trans('placeholder.basic'), trans('title.input_description'), 1, $errors, array(2,6,2)) !!}
         {!! Html_::closeFieldset() !!}
 
         {!! Form::submit(trans('button.submit'), ['id' =>'submitFormBanner', 'title' => 'enviar formulario', 'class' => 'btn col-md-2 btn-info']) !!} 
