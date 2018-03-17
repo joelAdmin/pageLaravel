@@ -12,7 +12,7 @@ class CommitController extends Controller
 {
     public function store()
     {
-    	//if (Request::ajax()) {
+    	if (Request::ajax()) {
     		$inputs = Request::all();
     		$id_not = $inputs['id']; //solo en este caso uso como prefijo el id por usar multiples lformularios
     		$request = ["commit" => $inputs["commit_$id_not"]]; //le coloco el name del campo de la tabla db para usa cargas masivas co create()
@@ -39,7 +39,7 @@ class CommitController extends Controller
         			}        			
 	        	}
 	        } 		
-    	//}
+    	}
     }
 
     public function getNewAnswer($id)

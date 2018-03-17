@@ -88,7 +88,7 @@ class NoticeModel extends Model
     {
         if (trim($request) != '') 
         {
-            $query = DB::table('notices')->join('images_notices', 'notices.id_Not', '=', 'images_notices.id_not')->join('images', 'images.id_Img', '=', 'images_notices.id_img')->where('notices.id_Not', "=", $request)->where('notices.deleted_at', "=", null);
+            $query = DB::table('notices')->join('images_notices', 'notices.id_Not', '=', 'images_notices.id_not')->join('images', 'images.id_Img', '=', 'images_notices.id_img')->leftjoin('commits_notices_users', 'notices.id_Not', '=', 'commits_notices_users.id_not')->where('notices.id_Not', "=", $request)->where('notices.deleted_at', "=", null);
         }else
         {
             $query = DB::table('notices')->join('images_notices', 'notices.id_Not', '=', 'images_notices.id_not')->join('images', 'images.id_Img', '=', 'images_notices.id_img')->where('notices.deleted_at', "=", null);

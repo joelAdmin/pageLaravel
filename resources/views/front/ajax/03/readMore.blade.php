@@ -8,12 +8,13 @@
              <div class="col-md-12 text-right">
               <ul class="social-network social-circle">
                   <!-- <li><a href="#" class="icoRss a_background" title="Rss"><i class="fa fa-rss"></i></a></li>-->
-                   <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://pagina.dev/readMore/{{$notice->id_Not}}" class="icoFacebook a_background" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                   <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://pagina.dev/readMore/{{$notice->id_Not}}" class="icoFacebook a_background" title="Facebook"><i class="fa fa-facebook-square "></i></a></li>
                    <li><a href="#" class="icoTwitter a_background" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                    <li><a href="#" class="icoGoogle a_background" title="Google +"><i class="fa fa-google-plus"></i></a></li>
                    <!--<li><a href="#" class="icoLinkedin a_background" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>-->
               </ul>       
           </div>
+          @include('front.include.commit')
           
             <p class="spec"><a title="{{ trans('title.read_more') }}" href="/" class="rm" ><i class="fa fa-reply fa-2"></i> {{ trans('label.back') }}</a></p>
           </div>

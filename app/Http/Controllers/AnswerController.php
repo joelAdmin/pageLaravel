@@ -27,16 +27,11 @@ class AnswerController extends Controller
 	       if ($result) 
 	       {
 	       	  $find_answer = AnswerModel::find($result);
-	       	  //dd($find_answer);
 	       	  $pivot = $find_answer->commits_users()->attach($id, ['id_use' => \Auth::User()->id]);
-	       	  //$answers = NoticeModel::getAnswer()->orderBy('id_ans', 'desc')->where('id_com', '=', $id)->get();
 	       	  $answers = NoticeModel::getAnswer()->orderBy('id_ans', 'desc')->get();
 	       	  if (isset($inputs['modal']) && ($inputs['modal']=true)) 
 	       	  {
-	       	  		//return $this->viewAnswers($id);
-	       	  		return view("front.include.answers", ['answers' => $answers, 'id_com' => $id]);
-	       	  		//$answers = NoticeModel::getAnswer()->where('id_com', '=', $id)->orderBy('id_ans', 'desc')->get();
-	       	  		//return view("front.ajax.03.answerModal", ['answers' => $answers, 'id_com' => $id]);
+	       	  	return view("front.include.answers", ['answers' => $answers, 'id_com' => $id, 'page_asnwer' => count(NoticeModel::getAnswer()->orderBy('id_ans', 'desc')->where('id_com', '=', $id)->get())]);
 	       	  }else
 	       	  {
 	       	  	return view("front.include.answers", ['answers' => $answers, 'id_com' => $id]);
@@ -47,13 +42,11 @@ class AnswerController extends Controller
 
     public function viewAnswers($id)
     {
-    	//if (Request::ajax()) {
+    	if (Request::ajax()) {
     		
         	$answers = NoticeModel::getAnswer()->where('id_com', '=', $id)->orderBy('id_ans', 'desc')->get();
-        	//$commit = CommitModel::find($id);
         	$commit = NoticeModel::getCommit()->where('id_com', '=', $id)->orderBy('id_com', 'desc')->get()[0];
-        	//dd($answers);
 	       	return view("front.ajax.answerModal", ['answers' => $answers, 'id_com' => $id, 'commit' => $commit]);
-    	//}
+    	}
     }
 }

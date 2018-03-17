@@ -25,5 +25,9 @@
   <script language="javascript" type="text/javascript" src="{{ asset('/js/app_front_ajax.js') }}"></script>
 
   <!--*****************************LIBRERIA AWESOME(ICONOS)********************************************************-->
-  <!--**--><link href="{{ asset('plantillas/lib_css/font-awesome/css/font-awesome.css') }}" rel="stylesheet"><!--**-->
+  <!--**--><!--**-->
+  <!--**-->
+  <link href="{{ asset('plantillas/lib_css/font-awesome/css/fontawesome-all.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" integrity="sha384-DmABxgPhJN5jlTwituIyzIUk6oqyzf3+XuP7q3VfcWA2unxgim7OSSZKKf0KSsnh" crossorigin="anonymous">
+  <!--**-->
   <!--*************************************************************************************************************-->
