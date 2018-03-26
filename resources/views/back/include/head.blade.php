@@ -10,7 +10,7 @@
     <title>@yield('title')</title>
 
       <link href="plantillas/01/css/bootstrap.css" rel="stylesheet">
-      <link href="plantillas/lib_css/font-awesome/css/font-awesome.css" rel="stylesheet">
+      <link href="plantillas/lib_css/font-awesome/css/fontawesome-all.css" rel="stylesheet">
 
       <!-- Page-Level Plugin CSS - Dashboard -->
       <link href="plantillas/01/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">

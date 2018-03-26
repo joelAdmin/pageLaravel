@@ -26,5 +26,5 @@
 
   <!--*****************************LIBRERIA AWESOME(ICONOS)********************************************************-->
   <link href="{{ asset('plantillas/lib_css/font-awesome/css/fontawesome-all.css') }}" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" integrity="sha384-DmABxgPhJN5jlTwituIyzIUk6oqyzf3+XuP7q3VfcWA2unxgim7OSSZKKf0KSsnh" crossorigin="anonymous">-->
+  <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" integrity="sha384-DmABxgPhJN5jlTwituIyzIUk6oqyzf3+XuP7q3VfcWA2unxgim7OSSZKKf0KSsnh" crossorigin="anonymous">
   <!--*************************************************************************************************************-->

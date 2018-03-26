@@ -163,13 +163,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         /**joel***/
-        //Styde\Seeder\SeederServiceProvider::class,
-
         /*
          * Package Service Providers...
          */
-
-        //
 
         /*
          * Application Service Providers...
@@ -183,6 +179,8 @@ return [
         App\Providers\HtmlProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
     ],
 
     /*
