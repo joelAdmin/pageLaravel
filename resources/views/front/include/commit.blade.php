@@ -24,9 +24,9 @@
               </div><br>
               <div id="cont_answer{{$commit->id_com}}">
                 @if(Auth::check())
-                  @can('create_commit')
+                  @role('admin')
                     <button onclick="ajaxLoad_v2('/newAnswer/{{$commit->id_com}}','cont_answer{{$commit->id_com}}');" class="btn-xs btn-info"><i class="fa fa-comment-alt"></i> responder bbb</button>
-                  @endcan
+                  @endrole
                 @else
                   <button onclick="ajaxLoadModal('/loginFront', 'content_modal', 'modalShow');" class="btn-xs btn-info"><i class="fa fa-comment-alt"></i> responder</button>
                 @endif

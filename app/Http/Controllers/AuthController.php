@@ -110,6 +110,7 @@ class AuthController extends Controller
 		{
 			/***if our data is correct will show the page home 
 			  (Si nuestros datos son correctos mostramos la página de inicio)***/
+			//dd($data);
 			return Redirect::intended('/backHome');
 		}
 		if ($Validator->fails()) 

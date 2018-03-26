@@ -59,8 +59,14 @@
 		//Route:: get('/restoreNotice/{id}', 'NoticeController@restore')->middleware('auth');
 		
 		Route::get('/restoreNotice/{id}', ['as' =>  'notices/restore', 'uses' => 'NoticeController@restore']);
+		
 
 		Route::get('/tableNotice', function () {
 			    return view('back.table.notice');
 		});
 	});
+
+	Route::group(['middleware' => ['permission:login_admin']], function () 
+	{
+    	Route::get('/backHome', 'AuthController@index')->middleware('permission:login_admin');
+    });

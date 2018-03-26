@@ -22,7 +22,7 @@ Route::group(['middleware' => ['web']], function ()
 
 	Route::get('/newUserFront', 'UserController@viewUserFront');
 	Route::post('/newUserFront', 'UserController@storeFront');
-	Route::get('/backHome', 'AuthController@index');
+	
 	Route::get('login', 'AuthController@showLogin');
 	Route::post('login', 'AuthController@postLogin');
 	Route::get('/showSubmenuAjax/{id}', 'PageController@showSubmenuAjax');
@@ -36,6 +36,7 @@ Route::group(['middleware' => ['web']], function ()
 	//Route::get('callback', 'SocialAuthController@callback');
 	Route::get('socialite/redirect/{provider?}', ['https' => 'true',  'uses' => 'SocialAuthController@redirect' , 'as' => 'redirect' ]);
 	Route::get('socialite/callback/{provider?}', ['https' => 'true',  'uses' => 'SocialAuthController@callback' , 'as' => 'callback' ]);
+	Route::get('403', 'PageController@page403');
 	Route::get('lang/{lang}', function ($lang) 
 	{
     	session(['lang' => $lang]);

@@ -38,4 +38,9 @@ class PageController extends Controller
         $submenu = SubmenuModel::find($id);
         return view('front.ajax.02.submenu', ['submenu' => $submenu]); 
     }
+
+    public function page403()
+    {
+        return view('back.permission.403');
+    }
 }
