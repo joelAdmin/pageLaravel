@@ -31,6 +31,11 @@ Route::group(['middleware' => ['web']], function ()
 	Route::post('/newContact', 'ContactController@store');
 	Route::get('/loginFront', 'AuthController@viewLoginFront');
 	Route::post('/loginFront', 'AuthController@postLoginFront');
+	//Socialite
+	//Route::get('/redirect', 'SocialAuthController@redirect');
+	//Route::get('callback', 'SocialAuthController@callback');
+	Route::get('socialite/redirect/{provider?}', ['https' => 'true',  'uses' => 'SocialAuthController@redirect' , 'as' => 'redirect' ]);
+	Route::get('socialite/callback/{provider?}', ['https' => 'true',  'uses' => 'SocialAuthController@callback' , 'as' => 'callback' ]);
 	Route::get('lang/{lang}', function ($lang) 
 	{
     	session(['lang' => $lang]);

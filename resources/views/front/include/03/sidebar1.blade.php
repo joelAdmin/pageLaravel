@@ -6,8 +6,6 @@
             	<li><a href="#" onclick="ajaxLoadModal('/loginFront', 'content_modal', 'modalShow');"><i class="fa fa-users"></i> {{ trans('label.user_register') }}</a></li>
            
             <li><a href="#" onclick="ajaxLoadModal('/newUserFront', 'content_modal-lg', 'modalShow_lg');"><i class="fa fa-user-plus"></i> {{ trans('label.users_new') }}</a></li>
-           
-            <li><a href="#"><i class="fa fa-facebook"></i> {{ trans('label.login_facebook') }}</a></li>
             <li><a href="#"><i class="fa fa-lock"></i> {{ trans('label.restore_pass') }}</a></li>
           </ul>
         </div>
@@ -23,6 +21,4 @@
             
           </ul>
         </div>
-
-
  @endif

@@ -10,11 +10,11 @@
 	     
 	      {!! Form::text_('user','user', trans('label.user'), trans('placeholder.basic'), trans('title.input_user'), 1, $errors, array(4,6)) !!}
 	      {!! Form::password_('passwd','passwd', trans('label.passwd'), trans('placeholder.basic'), trans('title.input_passwd'), 1, $errors, array(4,6)) !!}
-	    {!! Html_::closeFieldset() !!} 
-	    {!! Form::submit(trans('label.login'), ['id' =>'submitloginFront', 'title' => trans('title.btn_login'), 'class' => 'btn col-md-2 btn-info']) !!} 
-     
-      {!! Form::close() !!}
+	       {!! Form::submit(trans('label.login'), ['id' =>'submitloginFront', 'title' => trans('title.btn_login'), 'class' => 'btn col-md-2 btn-success']) !!}
+      {!! Html_::closeFieldset() !!} 
       
+      {!! Form::close() !!}
+      @include('front.include.btn_login_social')
       </div> 
     </div>
   </fieldset>

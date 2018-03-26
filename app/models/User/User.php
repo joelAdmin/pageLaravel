@@ -13,7 +13,7 @@ class User extends Model
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
-    protected $fillable = ['name', 'user', 'email', 'type'];
+    protected $fillable = ['name', 'user', 'email', 'type', 'avatar', 'provider', 'provider_id'];
     protected $hidden = ['remember_token'];
 
     public function scopesearch()

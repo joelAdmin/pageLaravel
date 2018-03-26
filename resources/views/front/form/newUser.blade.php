@@ -24,6 +24,7 @@
       </div> 
     </div>
   </fieldset>
+  @include('front.include.btn_login_social')
 </div>
 <script type="text/javascript">
 $(document).ready( function()
