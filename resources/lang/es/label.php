@@ -112,4 +112,10 @@ return [
     'access_control' => 'Control de accesso',
     'page' => 'Pagina',
     'cont_page' => 'Contenido de Pagina',
+    'new_permission' => 'Crear permiso',
+    'manager_permission' => 'Gestor de permission',
+    'role' => 'Rol',
+    'info_newPermission' => 'Nuevo Permiso',
+    'total_rows' => 'Total de registro',
+    'permission' => 'Permiso',
 ];

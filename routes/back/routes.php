@@ -9,6 +9,10 @@
 	//Route:: match(['get','post'], '/newNotice', 'NoticeController@notice')->middleware('auth');
 	Route::group(array('before'=>'auth', 'middleware' => ['permission:login_admin']), function()
 	{
+		Route:: get('/newPermission', 'PermissionController@index')->middleware('auth');
+		Route:: post('/newPermission', 'PermissionController@store')->middleware('auth');
+		Route:: get('/getTablePermission', 'PermissionController@getTablePermission')->middleware('auth');
+		
 		Route:: get('import', 'ImportController@import')->middleware('auth');
 		Route:: get('/newUser', 'UserController@index')->middleware('auth');
 		Route:: post('/newUser', 'UserController@store')->middleware('auth');

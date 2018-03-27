@@ -1,6 +1,7 @@
 <?php
 
 return [
+   'select_role' => 'Por favor seleccione el rol al cual se le va asignar el permiso.',
    'select_type_user' => 'Por favor seleccione un tipo de usuario que desea crear.',
    'input_user' => 'Por favor ingrese el nombre de usuario que desea crear.',
    'input_email' => 'Por favor ingrese su correo electronico.',
