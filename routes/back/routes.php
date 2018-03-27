@@ -7,7 +7,7 @@
 		})->middleware('auth');
 	});*/
 	//Route:: match(['get','post'], '/newNotice', 'NoticeController@notice')->middleware('auth');
-	Route::group(array('before'=>'auth'), function()
+	Route::group(array('before'=>'auth', 'middleware' => ['permission:login_admin']), function()
 	{
 		Route:: get('import', 'ImportController@import')->middleware('auth');
 		Route:: get('/newUser', 'UserController@index')->middleware('auth');
@@ -59,14 +59,9 @@
 		//Route:: get('/restoreNotice/{id}', 'NoticeController@restore')->middleware('auth');
 		
 		Route::get('/restoreNotice/{id}', ['as' =>  'notices/restore', 'uses' => 'NoticeController@restore']);
-		
+		Route::get('/backHome', 'AuthController@index')->middleware('permission:login_admin');
 
 		Route::get('/tableNotice', function () {
 			    return view('back.table.notice');
 		});
 	});
-
-	Route::group(['middleware' => ['permission:login_admin']], function () 
-	{
-    	Route::get('/backHome', 'AuthController@index')->middleware('permission:login_admin');
-    });

@@ -21,7 +21,7 @@ class PermissionMiddleware
      
         if (!$request->user()->can($permission)) {
            //abort(403);
-            return redirect('/');
+            return redirect('/403');
         }
      
         return $next($request);

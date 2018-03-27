@@ -107,4 +107,9 @@ return [
     'new_pass' => 'Cambio de clave',
     'registerUser' => 'Crear usuario',
     'info' => 'Información',
+    'legend_login_403' => 'Acceso negado',
+    'info_login_403' => 'Por favor contacte con su administrador de sistema',
+    'access_control' => 'Control de accesso',
+    'page' => 'Pagina',
+    'cont_page' => 'Contenido de Pagina',
 ];

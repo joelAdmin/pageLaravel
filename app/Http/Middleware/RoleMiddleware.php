@@ -20,7 +20,8 @@ class RoleMiddleware
         }
      
         if (! $request->user()->role($role)) {
-           abort(403);
+           //abort(403);
+             return redirect('/403');
         }
      
         return $next($request);
