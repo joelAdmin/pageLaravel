@@ -60,9 +60,26 @@ table.fija{
   word-wrap: break-word;
 }
 
-.bs-callout-danger {
+  .bs-callout-danger {
     background-color: #FDF7F7;
     border-color: #D9534F;
+}
+
+.bs-callout-success {
+    background-color: #dff0d8;
+    border-color: rgb(80,176, 0);
+}
+
+.bs-callout-info {
+  /*color: #31708f;*/
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.bs-callout-warning {
+  /*color: #8a6d3b;*/
+  background-color: #fcf8e3;
+  border-color: #faebcc;
 }
 
 .bs-callout {

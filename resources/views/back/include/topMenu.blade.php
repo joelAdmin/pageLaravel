@@ -75,7 +75,9 @@
             <i class="fa fa-cog fa-fw"></i><i class="fa fa-caret-down"></i> 
           </a>
           <ul class="dropdown-menu dropdown-user">
-            <li><a href="/newPermission"><i class="fa fa-lock fa-fw"></i> {{trans('label.access_control')}}</a></li>
+            <li><a href="/newPermission"><i class="fa fa-lock fa-fw"></i> {{trans('label.create_permissions')}}</a></li>
+            <li class="divider"></li>
+            <li><a href="/newPermission"><i class="fa fa-lock fa-fw"></i> {{trans('label.assign_permissions')}}</a></li>
             <li class="divider"></li>
               
           </ul>

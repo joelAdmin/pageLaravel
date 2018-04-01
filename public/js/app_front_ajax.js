@@ -204,7 +204,7 @@ function sendForm(btn_submit, url, form )
                   $("#div_" + index_name + "").removeClass("has-error has-feedback alert alert-danger"); 
                   $("#span_" + index_name + "").empty(); 
                 }
-                $('.loading').hide();
+                //$('.loading').hide();
             });
           }else
           {
@@ -222,7 +222,8 @@ function sendForm(btn_submit, url, form )
               $("#message").html(html);
               $('.loading').hide();
               document.getElementById('#'+form).reset();
-            }
+          }
+          $('.loading').hide();
         }
       });
       return false;
@@ -348,21 +349,6 @@ function commit(url, id)
    alert(url);
    var id = 'cont_commit'+id;
    ajaxLoad(url, id);
-  //alert(id_textarea+'/'+id);
-  /*
-  $('.loading').show();
-  var url = '/newCommitFront?commit=commit&id='+id;
-  $.ajax({
-    type:'GET',
-    url:url,
-    success: function(data)
-    {
-       alert(data);
-    },
-    error: function(xhr, status, error)
-    {
-      alert(xhr.responseText);
-    }
-
-  });*/
+  
+  
 }

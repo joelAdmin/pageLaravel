@@ -75,6 +75,65 @@ class HtmlProvider extends ServiceProvider
             return $html;
         });
 
+         Html::macro('div_modal_fieldset', function($id, $modal=null, $label, $fa)//esta dando error en el diseño
+        {
+            if($modal == null) {$content = 'content_modal';}else{$content='content_modal-lg';}
+            $html = '
+                        <div style="display:None;" id="'.$id.'" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog '.$modal.'">
+                                '; 
+
+            $html .= '
+                    <div class="panel-body">
+                      <fieldset class="scheduler-border"><legend class="scheduler-border"><i class="'.$fa.'"></i> '.$label.'<button type="button" class="close" data-dismiss="modal">x</button></legend>
+                        <div class="panel-body">
+                        <div id="message"></div>
+                          
+                        
+                          <div id="'.$content.'" class="modal-content">
+            ';  
+
+            $html .= '
+                     
+                        </div>
+                            </fieldset>
+                                </div>
+                    ';
+
+           $html .= '
+                        </div>
+                            </div>';
+            return $html;
+        });
+
+         Html::macro('div_fieldset', function($id, $label, $fa)
+        {
+            
+            $html = '
+            <div class="panel-body">
+              <fieldset id="'.$id.'" class="scheduler-border"><legend class="scheduler-border"><i class="'.$fa.'"></i> '.$label.'<button type="button" class="close" data-dismiss="modal">x</button></legend>
+                <div class="panel-body">
+                <div id="message"></div>
+                  <div id="resul_modal_contact"></div>
+                  <div id="cont_modal_contact">
+            ';
+
+            return $html;
+        });
+
+         Html::macro('close_div_fieldset', function()
+        {
+            
+            $html = '
+            </div> 
+                </div>
+                    </fieldset>
+                        </div>
+            ';
+
+            return $html;
+        });
+
         Html::macro('alert', function($id, $clas)
         {
             $html = '<div style="display:None;" id="'.$id.'" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -672,7 +731,7 @@ class HtmlProvider extends ServiceProvider
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
             $html .= '<h3 class="modal-title"><i class="fa fa-trash"></i>'.trans("label.info_deleted").'</h3>';
             $html .= '</div><div class="modal-body">';
-            $html .= '<p><h4><i class="fa fa-question-circle"></i> '.trans("label.confirm_deleted").'</h4></p>';
+            $html .= '<p><h4><i class="fa fa-comments"></i> '.trans("label.confirm_deleted").'</h4></p>';
             //$html .='<p>'.$id.'</p>';
             $html .= '</div>
                       <div class="modal-footer">
@@ -690,6 +749,30 @@ class HtmlProvider extends ServiceProvider
         Html::macro('myField', function()
         {
             return '<input type="awesome">nnnn';
+        });
+
+        Html::macro('modalConfirm', function($id, $id_deleted, $url, $message=array())
+        {
+            $html ='<div id="'.$id_deleted.'" class="modal fade" tabindex="-1" role="dialog">';
+            $html .='<div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+            $html .= '<h3 class="modal-title"><i class="'.$message["legend"]["fa"].'"></i> '.$message["legend"]["name"].'</h3>';
+            $html .= '</div><div class="modal-body">';
+            $html .= '<p><h4><i class="'.$message["message"]["fa"].'"></i> '.$message["message"]["name"].'</h4></p>';
+            //$html .='<p>'.$id.'</p>';
+            $html .= '</div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">'.trans("label.close").'</button>
+                        <button id="btn-deleted" type="button" class="btn btn-danger" onclick="ajaxRemove(\''.$id.'\', \''.$id_deleted.'\',\''.$url.'\');">'.trans("label.accept").'</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div>';
+
+            return $html;
+
         });
     }
 

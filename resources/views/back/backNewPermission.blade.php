@@ -30,7 +30,7 @@
 			                        {!! Form_::text_('text_search', 'search', trans('placeholder.input_search'), trans('title.input_search'), null, 'text') !!}
 			                     </div>
 			                     <div class="form-group">
-			                        {!! Form_::select_('id_column', 'column', trans('placeholder.select_search'), trans('title.select_search'), null, array('title_ban'=>trans('label.title'), 'content_ban'=>trans('label.content')), null )!!}
+			                        {!! Form_::select_('id_column', 'column', trans('placeholder.select_search'), trans('title.select_search'), null, array('name'=>trans('label.permission')), null )!!}
 			                     </div>
 			                     <div class="form-group">
 			                         {!! Form_::btn_('btn_search',  'btn btn-info', 'fa-search', trans('label.search')) !!}
@@ -43,10 +43,11 @@
             			</div>
                    </div>
       			</div>
-      			{!! Html_::modalFieldset('modal_edit', 'col-md-12 col-md-offset-1', array("fa-pencil", trans('label.info_content_banner')), false) !!}
+      			{!! Html::div_modal('modalShow', null) !!}
+      			{!! Html_::modalFieldset('modal_edit', 'col-md-12 col-md-offset-1', array("fa-info", trans('label.info_content_permission')), false) !!}
       				<div id="message"></div>
       				<div id="cont_modal_fieldset">
-
+      					
       				</div>
       			{!! Html_::closeModalFieldset() !!}
     		</div>
@@ -58,12 +59,19 @@
 @section('script')
 	<script type="text/javascript">
 	    $(document).ready(function () 
-	    {
-	       
+	    {	       
 	        ajaxLoad('/getTablePermission', 'cont_table');
 	    });
 
 	    function confirmDeleted(id)
+		{
+			$(document).ready(function () 
+			{	
+				$("#"+id+"").modal("show");
+			});
+		}
+
+		 function confirmRemove(id)
 		{
 			$(document).ready(function () 
 			{	
@@ -103,67 +111,14 @@
 			});
 		}
 
-		function restore(id)
-		{
-           	 var url = '/restoreBanner/'+id;
-           	$('.loading').show();
-			$.ajax({ 
-				type: "GET", 
-				url: url, 
-				contentType: false, 
-				success: function (data) 
-				{ 
-					if(data.success)
-					{	
-						$('#tr_'+data.tr_id).show(500, 'linear');
-						$("#menssage_deleted").html('');
-						$("#menssage_deleted").hide(500, 'linear');
-						$('.loading').hide();
-					} 
-				},
-				error: function (xhr, status, error) 
-				{ 
-					alert(xhr.responseText); 
-				} 
-			});
-		}
-
-	    function edit(url)
-		{
-			$(document).ready(function () 
-			{	
-				$("#message").html('');
-				ajaxLoad_ckEditor(url, 'cont_modal_fieldset');
-				$("#modal_edit").modal("show");
-			});
-		}
-
-		function ajaxLoad_ckEditor(filename, cont_table) 
-		{ 
-			cont_table = typeof cont_table !== 'undefined' ? cont_table : 'cont_table'; 
-			$('.loading').show(); 
-			$.ajax({ 
-				type: "GET", 
-				url: filename, 
-				contentType: false, 
-				success: function (data) 
-				{ 
-					$("#" + cont_table).html(data); $('.loading').hide(); 
-					$('.ckeditor').ckeditor();
-				},
-				error: function (xhr, status, error) 
-				{ 
-					alert(xhr.responseText); 
-				} 
-			}); 
-		}
+		
 
 		$("#btn_search").click(function()
 		{	
 			$('.loading').show(); 
 			$.ajax({
 				type: "GET",
-				url:'/searchBanner',
+				url:'/searchPermission',
 				//url:'/search',
 				data: $("#search").serialize(), // Adjuntar los campos del formulario enviado.
 				success: function(data)

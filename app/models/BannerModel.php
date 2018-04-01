@@ -1,7 +1,6 @@
 <?php
 
 namespace App\models;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,8 +31,6 @@ class BannerModel extends Model
                 $query->where("title_ban", "LIKE", "%$search%");
                 $query->orWhere('content_ban', "LIKE", "%$search%");
             }
-        }
-       
+        }  
     }
-    
 }

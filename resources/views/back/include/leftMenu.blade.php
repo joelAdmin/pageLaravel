@@ -34,9 +34,10 @@
                     </li>
 
                     <li>
-                    	<a id="" href="#" onclick="" ><i class="fa fa-film fa-fw"></i> <span class="fa arrow"></span>{{trans('label.media')}}</a>
+                    	<a id="" href="#" onclick="" ><i class="fa fa-lock fa-fw"></i> <span class="fa arrow"></span>{{trans('label.access_control')}}</a>
                     	<ul class="nav nav-second-level">
-                    		<li><a id="" href="#"  onclick=""><i class="fa fa-user fa-fw"></i>{{trans('label.new_user')}}</a></li>	
+                    		<li><a id="" href="/newPermission"  onclick=""><i class="fa fa-lock fa-fw"></i>{{trans('label.create_permissions')}}</a></li>
+                        <li><a id="" href="#"  onclick=""><i class="fa fa-unlock fa-fw"></i>{{trans('label.create_roles')}}</a></li>	
                     	</ul>
                     </li>
 
